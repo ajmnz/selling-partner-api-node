@@ -1,0 +1,44 @@
+name: 2. Update client
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install dependencies
+        run: |
+          yarn
+
+      - name: Generate client
+        run: |
+          sh scripts/generate-client.sh
+
+      - name: Format and lint
+        run: |
+          yarn format && yarn lint
+
+      - name: Build
+        run: |
+          yarn build
+
+      - name: Setup Git
+        run: |
+          sh scripts/set-git-credentials.sh
+
+      - name: Commit and push
+        run: |
+          git add -A .
+          git commit -m "update client to latest model changes"
+          git push origin main

@@ -1,0 +1,40 @@
+name: 1. Check for model updates
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Check changes in generated client
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install dependencies
+        run: |
+          yarn
+
+      - name: Generate client
+        run: |
+          sh scripts/generate-client.sh
+
+      - name: Detect changed files
+        id: change
+        run: |
+          echo "has-changed=$(output="$(git status --porcelain)"; if [[ -n $output ]]; then echo true; else echo false; fi)" >> $GITHUB_OUTPUT
+
+      - name: Invoke update client workflow
+        if: steps.change.has-changed
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: 2. Update client
