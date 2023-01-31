@@ -8,7 +8,8 @@ git:
 github:
   release: true
 
-npm: true
+npm:
+  publish: true
 
 before:init:
   - yarn lint
