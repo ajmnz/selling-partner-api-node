@@ -102,3 +102,7 @@ This client is fully written in TypeScript, by transforming the Amazon OpenAPI m
 ### Getting the latest model updates
 
 A Github Action runs every 30 minutes and gets the latest models from [amzn/selling-partner-api-models](https://github.com/amzn/selling-partner-api-models). If there's any changes in the generated client, updates will be pushed a new version will be released ensuring we always work with the latest models.
+
+## License
+
+MIT

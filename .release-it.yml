@@ -1,0 +1,18 @@
+git:
+  push: true
+  requireBranch: main
+  commit: true
+  commitMessage: release ${version}
+  commitArgs: ["--no-verify"]
+
+github:
+  release: true
+
+npm: true
+
+before:init:
+  - yarn lint
+  - yarn format
+  - yarn typecheck
+  - yarn clean
+  - yarn build
