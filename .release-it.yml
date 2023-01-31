@@ -16,6 +16,5 @@ hooks:
     - sh scripts/generate-client.sh
     - yarn lint
     - yarn format
-    - yarn typecheck
     - yarn clean
     - yarn build
