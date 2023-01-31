@@ -13,6 +13,7 @@ npm:
 
 hooks:
   before:init:
+    - sh scripts/generate-client.sh
     - yarn lint
     - yarn format
     - yarn typecheck
