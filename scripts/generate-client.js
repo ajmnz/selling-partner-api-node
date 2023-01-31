@@ -9,6 +9,9 @@ const prettierConfig = require("../.prettierrc.js");
 
 (async () => {
   const srcPath = path.join(__dirname, "../src");
+
+  fs.rmSync(path.join(srcPath, "generated"), { force: true, recursive: true });
+
   const modelsPath = path.join(__dirname, "../tmp-models");
   const modelDirs = fs.readdirSync(modelsPath);
 

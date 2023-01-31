@@ -85,7 +85,7 @@ export class SellingPartnerCore {
           secretAccessKey,
           sessionToken,
         }
-      );
+      )(config);
     });
 
     // Add rate-limit controller interceptor
