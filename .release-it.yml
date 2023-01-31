@@ -11,9 +11,10 @@ github:
 npm:
   publish: true
 
-before:init:
-  - yarn lint
-  - yarn format
-  - yarn typecheck
-  - yarn clean
-  - yarn build
+hooks:
+  before:init:
+    - yarn lint
+    - yarn format
+    - yarn typecheck
+    - yarn clean
+    - yarn build
