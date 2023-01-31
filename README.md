@@ -25,7 +25,7 @@ npm install sp-api-node
 
 In order to use the Selling Partner API, you need to register as a developer and register your application. Follow [Amazon's docs](https://developer-docs.amazon.com/sp-api/docs) on getting started with the Selling Partner API and obtaining a refresh token for your application.
 
-#### Authentication
+### Authentication
 
 This SDK handles authentication for you and takes care of both acquiring an access token and assuming the role via STS, as well as keeping the credentials refreshed. The client expects the following credentials:
 
@@ -34,12 +34,12 @@ This SDK handles authentication for you and takes care of both acquiring an acce
 - **Role ARN**: See [creating and configuring IAM policies and entities](https://developer-docs.amazon.com/sp-api/docs/creating-and-configuring-iam-policies-and-entities)
 - **Access Key**: See [creating and configuring IAM policies and entities](https://developer-docs.amazon.com/sp-api/docs/creating-and-configuring-iam-policies-and-entities)
 - **Secret Key**: See [creating and configuring IAM policies and entities](https://developer-docs.amazon.com/sp-api/docs/creating-and-configuring-iam-policies-and-entities)
-- **Refresh Token**: See [Self authorization](https://developer-docs.amazon.com/sp-api/docs/self-authorization)
+- **Refresh Token**: See [self authorization](https://developer-docs.amazon.com/sp-api/docs/self-authorization)
 - **Role Session Name** (optional): For STS when assuming role. Default is `sp-api-node`.
 
 ## Usage
 
-#### Client options
+### Client options
 
 | option             | description                                                                                                                     | required | default |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
@@ -48,7 +48,7 @@ This SDK handles authentication for you and takes care of both acquiring an acce
 | `handleRateLimits` | If the client should intercept rate-limited requests and wait the appropriate time before retrying the request                  | no       | `true`  |
 | `credentials`      | Credentials for calling the SP API (see [Authentication](#authentication))                                                      | yes      | -       |
 
-#### Calling the API
+### Calling the API
 
 Import the client
 
@@ -65,12 +65,12 @@ const sp = new SellingPartner({
     clientId: "amzn1.application-oa2-client.example",
     clientSecret: "050e346ef80574b4c3example",
     roleArn: "arn:aws:iam:3513513:role/SP-API-Example-Role",
-    accessKey: "AKIAU420PEXAMPLE"
+    accessKey: "AKIAU420PEXAMPLE",
     secretKey: "53fac/51767+CJCo4/9aGexample",
     refreshToken: "Atzr|Ra55Kfgu-_...B03lexample",
-    roleSessionName: "sp-api-node"
-  }
-})
+    roleSessionName: "sp-api-node",
+  },
+});
 ```
 
 Now all APIs are available as properties from the instance you just created. APIs that have only one version are accessible directly, while the ones that have multiple versions are accessible via `theApi.vVersion.theMethod()`.
@@ -87,7 +87,7 @@ const item = await sp.catalogItems.v0.getCatalogItem("my-asin", {
 });
 ```
 
-#### Handling rate limits
+### Handling rate limits
 
 This SDK automatically handles rate limits and waits for the necessary amount of time by reading the `x-amzn-RateLimit-Limit` header. See [Usage Plans and Rate Limits in the SP-API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
 
@@ -95,10 +95,10 @@ When Amazon replies with a `QuotaExceeded` error, the client will determine how 
 
 If you want to prevent this type of behavior and have the client throw the `QuotaExceeded` error instead of waiting, pass `handleRateLimits: false` to the client constructor.
 
-#### TypeScript support
+### TypeScript support
 
 This client is fully written in TypeScript, by transforming the Amazon OpenAPI models into TypeScript definitions using the amazing [acacode/swagger-typescript-api](https://github.com/acacode/swagger-typescript-api) library.
 
-#### Getting the latest model updates
+### Getting the latest model updates
 
 A Github Action runs every 30 minutes and gets the latest models from [amzn/selling-partner-api-models](https://github.com/amzn/selling-partner-api-models). If there's any changes in the generated client, updates will be pushed a new version will be released ensuring we always work with the latest models.
