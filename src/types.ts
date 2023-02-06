@@ -29,6 +29,8 @@ export interface SellingPartnerOptions {
   debug?: boolean;
 
   handleRateLimits?: boolean;
+
+  defaultRateLimitWaitSeconds?: number;
 }
 
 export interface LwaResponse {

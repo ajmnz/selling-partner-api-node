@@ -41,12 +41,13 @@ This SDK handles authentication for you and takes care of both acquiring an acce
 
 ### Client options
 
-| option             | description                                                                                                                     | required | default |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
-| `region`           | The region for the Selling Partner API (see [SP-API Endpoints](https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints)) | yes      | -       |
-| `debug`            | Log additional information like requests, authorization triggers, rate-limits, etc.                                             | no       | `false` |
-| `handleRateLimits` | If the client should intercept rate-limited requests and wait the appropriate time before retrying the request                  | no       | `true`  |
-| `credentials`      | Credentials for calling the SP API (see [Authentication](#authentication))                                                      | yes      | -       |
+| option                        | description                                                                                                                     | required | default |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
+| `region`                      | The region for the Selling Partner API (see [SP-API Endpoints](https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints)) | yes      | -       |
+| `debug`                       | Log additional information like requests, authorization triggers, rate-limits, etc.                                             | no       | `false` |
+| `handleRateLimits`            | If the client should intercept rate-limited requests and wait the appropriate time before retrying the request                  | no       | `true`  |
+| `defaultRateLimitWaitSeconds` | How many seconds to wait by default if a request is rate limited and the client doesn't have information about the restore rate | no       | 60      |
+| `credentials`                 | Credentials for calling the SP API (see [Authentication](#authentication))                                                      | yes      | -       |
 
 ### Calling the API
 

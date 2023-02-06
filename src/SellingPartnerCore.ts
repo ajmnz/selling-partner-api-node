@@ -38,6 +38,7 @@ export class SellingPartnerCore {
   constructor(options: SellingPartnerOptions) {
     options.handleRateLimits = options.handleRateLimits !== false;
     options.debug = Boolean(options.debug);
+    options.defaultRateLimitWaitSeconds = options.defaultRateLimitWaitSeconds ?? 60;
 
     this.options = options;
     this.debug = options.debug;
@@ -96,11 +97,13 @@ export class SellingPartnerCore {
       this.httpClient.instance.interceptors.response.use(
         (response) => {
           const code = (response.config as any).code;
-          const rateLimitHeader = response.headers["x-amzn-ratelimit-limit"];
 
-          if (code && rateLimitHeader) {
-            const restoreRate = Number(response.headers["x-amzn-ratelimit-limit"]);
-            if (restoreRate && !(code in this.restoreRates)) {
+          if (code) {
+            const rateLimitHeader = response.headers["x-amzn-ratelimit-limit"];
+            const restoreRate = Number(
+              rateLimitHeader ?? options.defaultRateLimitWaitSeconds
+            );
+            if (restoreRate) {
               this.restoreRates[code] = 1 / restoreRate;
             }
           }
@@ -114,22 +117,17 @@ export class SellingPartnerCore {
 
           const code = (error.config as any).code;
 
-          if (
-            error.response?.status === 429 &&
-            code &&
-            (error.response.data as { errors?: { code: string }[] })?.errors?.some(
-              (e) => e.code === "QuotaExceeded"
-            )
-          ) {
+          if (error.response?.status === 429 && code) {
             const restoreRate = this.restoreRates[code];
-            if (restoreRate) {
-              this.log(
-                `Rate limited. Waiting ${restoreRate} seconds for '${code}' before retrying`
-              );
 
-              await this.wait(restoreRate * 1000);
-              return this.httpClient.instance(error.config);
-            }
+            this.log(
+              `Rate limited. Waiting ${
+                restoreRate ?? 60
+              } seconds for '${code}' before retrying`
+            );
+
+            await this.wait((restoreRate ?? 60) * 1000);
+            return this.httpClient.instance(error.config);
           }
 
           throw error;
