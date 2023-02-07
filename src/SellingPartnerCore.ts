@@ -76,6 +76,8 @@ export class SellingPartnerCore {
 
       config.headers!["x-amz-access-token"] = accessToken;
 
+      this.log(`Executing '${config.url}'`);
+
       return aws4Interceptor(
         {
           region: this.options.region,
@@ -104,6 +106,7 @@ export class SellingPartnerCore {
               rateLimitHeader ?? options.defaultRateLimitWaitSeconds
             );
             if (restoreRate) {
+              this.log(`Restore rate '${code}': ${1 / restoreRate}`);
               this.restoreRates[code] = 1 / restoreRate;
             }
           }
