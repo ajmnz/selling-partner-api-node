@@ -35,10 +35,18 @@ export class SellingPartnerCore {
    */
   private debug: boolean;
 
+  /**
+   * Default restore rate
+   */
+  private defaultRestoreRate = 60;
+
   constructor(options: SellingPartnerOptions) {
     options.handleRateLimits = options.handleRateLimits !== false;
     options.debug = Boolean(options.debug);
-    options.defaultRateLimitWaitSeconds = options.defaultRateLimitWaitSeconds ?? 60;
+
+    if (options.defaultRateLimitWaitSeconds) {
+      this.defaultRestoreRate = options.defaultRateLimitWaitSeconds;
+    }
 
     this.options = options;
     this.debug = options.debug;
@@ -102,9 +110,7 @@ export class SellingPartnerCore {
 
           if (code) {
             const rateLimitHeader = response.headers["x-amzn-ratelimit-limit"];
-            const restoreRate = Number(
-              rateLimitHeader ?? options.defaultRateLimitWaitSeconds
-            );
+            const restoreRate = Number(rateLimitHeader ?? 1 / this.defaultRestoreRate);
             if (restoreRate) {
               this.log(`Restore rate '${code}': ${1 / restoreRate}`);
               this.restoreRates[code] = 1 / restoreRate;
@@ -125,11 +131,11 @@ export class SellingPartnerCore {
 
             this.log(
               `Rate limited. Waiting ${
-                restoreRate ?? 60
+                restoreRate ?? this.defaultRestoreRate
               } seconds for '${code}' before retrying`
             );
 
-            await this.wait((restoreRate ?? 60) * 1000);
+            await this.wait((restoreRate ?? this.defaultRestoreRate) * 1000);
             return this.httpClient.instance(error.config);
           }
 
