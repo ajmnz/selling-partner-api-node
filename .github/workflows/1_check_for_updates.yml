@@ -38,3 +38,4 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: 2. Update client
+          token: ${{ secrets.GH_TOKEN }}
