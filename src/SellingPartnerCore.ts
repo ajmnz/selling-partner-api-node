@@ -99,8 +99,6 @@ export class SellingPartnerCore {
       )(config);
     });
 
-    // Intercept unauthorized requests and retry them by refreshing auth
-
     // Add rate-limit controller interceptor
 
     if (options.handleRateLimits) {
