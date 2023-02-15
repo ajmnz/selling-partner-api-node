@@ -34,7 +34,7 @@ jobs:
           echo "has-changed=$(output="$(git status --porcelain)"; if [[ -n $output ]]; then echo true; else echo false; fi)" >> $GITHUB_OUTPUT
 
       - name: Invoke update client workflow
-        if: steps.change.outputs.has-changed
+        if: steps.change.outputs.has-changed == 'true'
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: 2. Update client
