@@ -31,10 +31,10 @@ jobs:
       - name: Detect changed files
         id: change
         run: |
-          echo "has-changed=$(output="$(git status --porcelain)"; if [[ -n $output ]]; then echo 'yes'; else echo 'no'; fi)" >> $GITHUB_OUTPUT
+          echo "has-changed=$(output="$(git status --porcelain)"; if [[ -n $output ]]; then echo true; else echo false; fi)" >> $GITHUB_OUTPUT
 
       - name: Invoke update client workflow
-        if: steps.change.has-changed == 'yes'
+        if: steps.change.outputs.has-changed
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: 2. Update client
