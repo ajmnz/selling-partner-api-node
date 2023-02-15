@@ -99,6 +99,8 @@ export class SellingPartnerCore {
       )(config);
     });
 
+    // Intercept unauthorized requests and retry them by refreshing auth
+
     // Add rate-limit controller interceptor
 
     if (options.handleRateLimits) {
@@ -113,7 +115,8 @@ export class SellingPartnerCore {
             const restoreRate = Number(rateLimitHeader ?? 1 / this.defaultRestoreRate);
             if (restoreRate) {
               this.log(`Restore rate '${code}': ${1 / restoreRate}`);
-              this.restoreRates[code] = 1 / restoreRate;
+              // Add a little margin
+              this.restoreRates[code] = 1 / restoreRate + 10;
             }
           }
 
@@ -226,10 +229,11 @@ export class SellingPartnerCore {
    * Get an access token from LWA and then assume
    * the role via STS
    */
-  private async authenticate() {
+  private async authenticate(force = false) {
     this.log("[auth] Running authentication flow");
 
     if (
+      !force &&
       this.credentials &&
       Date.now() - this.credentials.expireAt.getMilliseconds() > 60 * 10 * 1000
     ) {
