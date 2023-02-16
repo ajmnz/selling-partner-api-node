@@ -1,6 +1,6 @@
 {
   "name": "sp-api-node",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "ajmnz <arnau@ajb.cat>",
