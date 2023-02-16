@@ -233,7 +233,7 @@ export class SellingPartnerCore {
     const now = new Date();
     now.setMinutes(now.getMinutes() + 10);
 
-    if (!force && this.credentials && now > this.credentials.expireAt) {
+    if (!force && this.credentials && now < this.credentials.expireAt) {
       this.log(
         `[auth] Stopping authentication flow. Credentials still valid until ${this.credentials.expireAt.toISOString()}`
       );
