@@ -233,7 +233,7 @@ export class SellingPartnerCore {
     if (
       !force &&
       this.credentials &&
-      Date.now() - this.credentials.expireAt.getMilliseconds() > 60 * 10 * 1000
+      Date.now() - this.credentials.expireAt.getTime() > 60 * 10 * 1000
     ) {
       this.log(
         `[auth] Stopping authentication flow. Credentials still valid until ${this.credentials.expireAt.toISOString()}`
