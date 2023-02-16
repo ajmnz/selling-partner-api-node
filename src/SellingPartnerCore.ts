@@ -230,11 +230,10 @@ export class SellingPartnerCore {
   private async authenticate(force = false) {
     this.log("[auth] Running authentication flow");
 
-    if (
-      !force &&
-      this.credentials &&
-      Date.now() - this.credentials.expireAt.getTime() > 60 * 10 * 1000
-    ) {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() + 10);
+
+    if (!force && this.credentials && now > this.credentials.expireAt) {
       this.log(
         `[auth] Stopping authentication flow. Credentials still valid until ${this.credentials.expireAt.toISOString()}`
       );
