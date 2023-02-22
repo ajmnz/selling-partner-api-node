@@ -894,6 +894,67 @@ export interface UpdateItemsApprovalsErrorResponse {
   errors?: ErrorList;
 }
 
+/** The request schema for an shipment confirmation. */
+export interface ConfirmShipmentRequest {
+  /** Properties of packages */
+  packageDetail: PackageDetail;
+  /** The cod collection method, support in JP only.  */
+  codCollectionMethod?: "DirectPayment";
+  /** The unobfuscated marketplace identifier. */
+  marketplaceId: MarketplaceId;
+}
+
+/** The error response schema for an shipment confirmation. */
+export interface ConfirmShipmentErrorResponse {
+  /** One or more unexpected errors occurred during the confirmShipment operation. */
+  errors?: ErrorList;
+}
+
+/** Properties of packages */
+export interface PackageDetail {
+  /** A seller-supplied identifier that uniquely identifies a package within the scope of an order. Only positive numeric values are supported. */
+  packageReferenceId: PackageReferenceId;
+  /** Identifies the carrier that will deliver the package. This field is required for all marketplaces, see [reference](https://developer-docs.amazon.com/sp-api/changelog/carriercode-value-required-in-shipment-confirmations-for-br-mx-ca-sg-au-in-jp-marketplaces). */
+  carrierCode: string;
+  /** Carrier Name that will deliver the package. Required when carrierCode is "Others"  */
+  carrierName?: string;
+  /** Ship method to be used for shipping the order. */
+  shippingMethod?: string;
+  /** The tracking number used to obtain tracking and delivery information. */
+  trackingNumber: string;
+  /**
+   * The shipping date for the package. Must be in ISO-8601 date/time format.
+   * @format date-time
+   */
+  shipDate: string;
+  /** The unique identifier of the supply source. */
+  shipFromSupplySourceId?: string;
+  /** The list of order items and quantities to be updated. */
+  orderItems: ConfirmShipmentOrderItemsList;
+}
+
+/** A list of order items. */
+export type ConfirmShipmentOrderItemsList = ConfirmShipmentOrderItem[];
+
+/** A single order item. */
+export interface ConfirmShipmentOrderItem {
+  /** The unique identifier of the order item. */
+  orderItemId: string;
+  /** The quantity of the item. */
+  quantity: number;
+  /** The list of transparency codes. */
+  transparencyCodes?: TransparencyCodeList;
+}
+
+/** A list of order items. */
+export type TransparencyCodeList = TransparencyCode[];
+
+/** The Transparency code associated with the item. */
+export type TransparencyCode = string;
+
+/** A seller-supplied identifier that uniquely identifies a package within the scope of an order. Only positive numeric values are supported. */
+export type PackageReferenceId = string;
+
 /** A list of error responses returned when a request is unsuccessful. */
 export type ErrorList = Error[];
 

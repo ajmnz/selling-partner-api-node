@@ -1,4 +1,6 @@
 import {
+  ConfirmShipmentErrorResponse,
+  ConfirmShipmentRequest,
   GetOrderAddressResponse,
   GetOrderApprovalsResponse,
   GetOrderBuyerInfoResponse,
@@ -335,6 +337,26 @@ export class Orders<SecurityDataType = unknown> {
       path: `/orders/v0/orders/${orderId}/approvals`,
       method: "POST",
       code: "post:/orders/v0/orders/{orderId}/approvals",
+      body: payload,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description Updates the shipment confirmation status for a specified order. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 10 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+   *
+   * @tags ordersV0
+   * @name ConfirmShipment
+   * @request POST:/orders/v0/orders/{orderId}/shipmentConfirmation
+   */
+  confirmShipment = (
+    orderId: string,
+    payload: ConfirmShipmentRequest,
+    params: RequestParams = {}
+  ) =>
+    this.http.request<void, ConfirmShipmentErrorResponse>({
+      path: `/orders/v0/orders/${orderId}/shipmentConfirmation`,
+      method: "POST",
+      code: "post:/orders/v0/orders/{orderId}/shipmentConfirmation",
       body: payload,
       type: ContentType.Json,
       ...params,
