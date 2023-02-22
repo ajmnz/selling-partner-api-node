@@ -354,12 +354,8 @@ export interface RegulatedInformationField {
 export interface OrderAddress {
   /** An Amazon-defined order identifier, in 3-7-7 format. */
   AmazonOrderId: string;
-  /** Company name of the destination address. */
-  BuyerCompanyName?: string;
   /** The shipping address for the order. */
   ShippingAddress?: Address;
-  /** Contains all of the delivery instructions provided by the customer for the shipping address. */
-  DeliveryPreferences?: DeliveryPreferences;
 }
 
 /** The shipping address for the order. */
@@ -390,67 +386,6 @@ export interface Address {
   Phone?: string;
   /** The address type of the shipping address. */
   AddressType?: "Residential" | "Commercial";
-}
-
-/** Contains all of the delivery instructions provided by the customer for the shipping address. */
-export interface DeliveryPreferences {
-  /** Drop-off location selected by the customer. */
-  DropOffLocation?: string;
-  /** Business hours and days when the delivery is preferred. */
-  PreferredDeliveryTime?: PreferredDeliveryTime;
-  /** Enumerated list of miscellaneous delivery attributes associated with the shipping address. */
-  OtherAttributes?: OtherDeliveryAttributes[];
-  /** Building instructions, nearby landmark or navigation instructions. */
-  AddressInstructions?: string;
-}
-
-/** The time window when the delivery is preferred. */
-export interface PreferredDeliveryTime {
-  /** Business hours when the business is open for deliveries. */
-  BusinessHours?: BusinessHours[];
-  /** Dates when the business is closed in the next 30 days. */
-  ExceptionDates?: ExceptionDates[];
-}
-
-/** Business days and hours when the destination is open for deliveries. */
-export interface BusinessHours {
-  /** Day of the week. */
-  DayOfWeek?: "SUN" | "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT";
-  /** Time window during the day when the business is open. */
-  OpenIntervals?: OpenInterval[];
-}
-
-/** Dates when the business is closed or open with a different time window. */
-export interface ExceptionDates {
-  /** Date when the business is closed, in ISO-8601 date format. */
-  ExceptionDate?: string;
-  /** Boolean indicating if the business is closed or open on that date. */
-  IsOpen?: boolean;
-  /** Time window during the day when the business is open. */
-  OpenIntervals?: OpenInterval[];
-}
-
-/** The time interval for which the business is open. */
-export interface OpenInterval {
-  /** The time when the business opens. */
-  StartTime?: OpenTimeInterval;
-  /** The time when the business closes. */
-  EndTime?: OpenTimeInterval;
-}
-
-/** The time when the business opens or closes. */
-export interface OpenTimeInterval {
-  /** The hour when the business opens or closes. */
-  Hour?: number;
-  /** The minute when the business opens or closes. */
-  Minute?: number;
-}
-
-/** Miscellaneous delivery attributes associated with the shipping address. */
-export enum OtherDeliveryAttributes {
-  HAS_ACCESS_POINT = "HAS_ACCESS_POINT",
-  PALLET_ENABLED = "PALLET_ENABLED",
-  PALLET_DISABLED = "PALLET_DISABLED",
 }
 
 /** The monetary value of the order. */
@@ -893,67 +828,6 @@ export interface UpdateItemsApprovalsErrorResponse {
   /** One or more unexpected errors occurred during the updateOrderItemsApprovals operation. */
   errors?: ErrorList;
 }
-
-/** The request schema for an shipment confirmation. */
-export interface ConfirmShipmentRequest {
-  /** Properties of packages */
-  packageDetail: PackageDetail;
-  /** The cod collection method, support in JP only.  */
-  codCollectionMethod?: "DirectPayment";
-  /** The unobfuscated marketplace identifier. */
-  marketplaceId: MarketplaceId;
-}
-
-/** The error response schema for an shipment confirmation. */
-export interface ConfirmShipmentErrorResponse {
-  /** One or more unexpected errors occurred during the confirmShipment operation. */
-  errors?: ErrorList;
-}
-
-/** Properties of packages */
-export interface PackageDetail {
-  /** A seller-supplied identifier that uniquely identifies a package within the scope of an order. Only positive numeric values are supported. */
-  packageReferenceId: PackageReferenceId;
-  /** Identifies the carrier that will deliver the package. This field is required for all marketplaces, see [reference](https://developer-docs.amazon.com/sp-api/changelog/carriercode-value-required-in-shipment-confirmations-for-br-mx-ca-sg-au-in-jp-marketplaces). */
-  carrierCode: string;
-  /** Carrier Name that will deliver the package. Required when carrierCode is "Others"  */
-  carrierName?: string;
-  /** Ship method to be used for shipping the order. */
-  shippingMethod?: string;
-  /** The tracking number used to obtain tracking and delivery information. */
-  trackingNumber: string;
-  /**
-   * The shipping date for the package. Must be in ISO-8601 date/time format.
-   * @format date-time
-   */
-  shipDate: string;
-  /** The unique identifier of the supply source. */
-  shipFromSupplySourceId?: string;
-  /** The list of order items and quantities to be updated. */
-  orderItems: ConfirmShipmentOrderItemsList;
-}
-
-/** A list of order items. */
-export type ConfirmShipmentOrderItemsList = ConfirmShipmentOrderItem[];
-
-/** A single order item. */
-export interface ConfirmShipmentOrderItem {
-  /** The unique identifier of the order item. */
-  orderItemId: string;
-  /** The quantity of the item. */
-  quantity: number;
-  /** The list of transparency codes. */
-  transparencyCodes?: TransparencyCodeList;
-}
-
-/** A list of order items. */
-export type TransparencyCodeList = TransparencyCode[];
-
-/** The Transparency code associated with the item. */
-export type TransparencyCode = string;
-
-/** A seller-supplied identifier that uniquely identifies a package within the scope of an order. Only positive numeric values are supported. */
-export type PackageReferenceId = string;
 
 /** A list of error responses returned when a request is unsuccessful. */
 export type ErrorList = Error[];
