@@ -123,6 +123,8 @@ export interface OrderItem {
   taxDetails?: TaxItemDetails;
   /** The price to Amazon each (cost). */
   totalPrice?: Money;
+  /** The buyer information for products the vendor has configured as customizable, specifying the types of customizations or configurations along with types and ranges for their product. This provides the ability for buyers to customize multiple aspects of the products according to what the vendor allows. */
+  buyerCustomizedInfo?: BuyerCustomizedInfoDetail;
 }
 
 /** An amount of money, including units in the form of currency. */
@@ -131,6 +133,11 @@ export interface Money {
   currencyCode?: string;
   /** A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. */
   amount?: Decimal;
+}
+
+export interface BuyerCustomizedInfoDetail {
+  /** A [Base 64](https://datatracker.ietf.org/doc/html/rfc4648#section-4) encoded URL using the UTF-8 character set. The URL provides the location of the zip file that specifies the types of customizations or configurations allowed by the vendor, along with types and ranges for the attributes of their products. */
+  customizedUrl?: string;
 }
 
 /** A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. */
