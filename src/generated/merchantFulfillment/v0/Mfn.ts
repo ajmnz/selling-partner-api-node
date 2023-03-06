@@ -18,7 +18,7 @@ export class Mfn<SecurityDataType = unknown> {
   }
 
   /**
-   * @description Returns a list of shipping service offers that satisfy the specified shipment request details. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns a list of shipping service offers that satisfy the specified shipment request details. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags merchantFulfillment
    * @name GetEligibleShipmentServicesOld
@@ -40,7 +40,7 @@ export class Mfn<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns a list of shipping service offers that satisfy the specified shipment request details. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 10 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns a list of shipping service offers that satisfy the specified shipment request details. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 10 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags merchantFulfillment
    * @name GetEligibleShipmentServices
@@ -62,7 +62,7 @@ export class Mfn<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns the shipment information for an existing shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns the shipment information for an existing shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags merchantFulfillment
    * @name GetShipment
@@ -77,7 +77,7 @@ export class Mfn<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Cancel the shipment indicated by the specified shipment identifier. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Cancel the shipment indicated by the specified shipment identifier. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags merchantFulfillment
    * @name CancelShipment
@@ -92,7 +92,7 @@ export class Mfn<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Cancel the shipment indicated by the specified shipment identifer. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Cancel the shipment indicated by the specified shipment identifer. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags merchantFulfillment
    * @name CancelShipmentOld
@@ -107,7 +107,7 @@ export class Mfn<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Create a shipment with the information provided. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Create a shipment with the information provided. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags merchantFulfillment
    * @name CreateShipment
@@ -124,7 +124,7 @@ export class Mfn<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Get a list of additional seller inputs required for a ship method. This is generally used for international shipping. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Get a list of additional seller inputs required for a ship method. This is generally used for international shipping. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags merchantFulfillment
    * @name GetAdditionalSellerInputsOld
@@ -146,7 +146,7 @@ export class Mfn<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 1 | 1 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags merchantFulfillment
    * @name GetAdditionalSellerInputs
