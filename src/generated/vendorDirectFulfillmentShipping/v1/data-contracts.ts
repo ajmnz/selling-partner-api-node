@@ -12,7 +12,7 @@
 /** Packing slip information. */
 export interface PackingSlip {
   /**
-   * Purchase order number of the shipment that the packing slip is for.
+   * Purchase order number of the shipment that corresponds to the packing slip.
    * @pattern ^[a-zA-Z0-9]+$
    */
   purchaseOrderNumber: string;

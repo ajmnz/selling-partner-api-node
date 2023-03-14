@@ -38,7 +38,7 @@ export interface InvoiceDetail {
   invoiceTotal: Money;
   /** Individual tax details per line item. */
   taxTotals?: TaxDetail[];
-  /** Additional details provided by the selling party, for tax related or other purposes. */
+  /** Additional details provided by the selling party, for tax-related or other purposes. */
   additionalDetails?: AdditionalDetails[];
   /** Total charge amount details for all line items. */
   chargeDetails?: ChargeDetails[];
@@ -61,7 +61,7 @@ export interface InvoiceItem {
   purchaseOrderNumber: string;
   /** The vendor's order number for this order. */
   vendorOrderNumber?: string;
-  /** HSN tax code. The HSN number cannot contain alphabets. */
+  /** Harmonized System of Nomenclature (HSN) tax code. The HSN number cannot contain alphabets. */
   hsnCode?: string;
   /** Individual tax details per line item. */
   taxDetails?: TaxDetail[];
@@ -170,7 +170,7 @@ export interface ChargeDetails {
   taxDetails?: TaxDetail[];
 }
 
-/** A field where selling party can provide additional information for tax related or any other purposes. */
+/** A field where the selling party can provide additional information for tax-related or any other purposes. */
 export interface AdditionalDetails {
   /** The type of the additional information provided by the selling party. */
   type: "SUR" | "OCR";
