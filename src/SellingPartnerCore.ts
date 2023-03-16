@@ -231,7 +231,7 @@ export class SellingPartnerCore {
     this.log("[auth] Running authentication flow");
 
     const now = new Date();
-    now.setMinutes(now.getMinutes() + 10);
+    now.setMinutes(now.getMinutes() + 20);
 
     if (!force && this.credentials && now < this.credentials.expireAt) {
       this.log(
