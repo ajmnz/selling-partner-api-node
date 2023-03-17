@@ -17,5 +17,6 @@ hooks:
     - sh scripts/generate-client.sh
     - yarn lint
     - yarn format
+  after:bump:
     - yarn clean
     - yarn build
