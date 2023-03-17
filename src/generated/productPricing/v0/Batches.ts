@@ -1,14 +1,3 @@
-/* eslint-disable */
-/* tslint:disable */
-/*
- * ---------------------------------------------------------------
- * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
- * ##                                                           ##
- * ## AUTHOR: acacode                                           ##
- * ## SOURCE: https://github.com/acacode/swagger-typescript-api ##
- * ---------------------------------------------------------------
- */
-
 import {
   Errors,
   GetItemOffersBatchRequest,
@@ -16,7 +5,7 @@ import {
   GetListingOffersBatchRequest,
   GetListingOffersBatchResponse,
 } from "./data-contracts";
-import { ContentType, HttpClient, RequestParams } from "./http-client";
+import { ContentType, HttpClient, RequestParams } from "../../../http-client";
 
 export class Batches<SecurityDataType = unknown> {
   private http: HttpClient<SecurityDataType>;

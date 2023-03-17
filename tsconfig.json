@@ -30,7 +30,6 @@
     "dist",
     "dist*",
     "**/dist/*",
-    "**/node_modules/*",
-    "**/generated/**"
+    "**/node_modules/*"
   ]
 }

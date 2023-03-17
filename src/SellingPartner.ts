@@ -27,6 +27,7 @@ import { Notifications as notificationsNotifications } from "./generated/notific
 import { Orders as ordersV0Orders } from "./generated/orders/v0/Orders";
 import { Products as productFeesV0Products } from "./generated/productFees/v0/Products";
 import { Products as productPricingV0Products } from "./generated/productPricing/v0/Products";
+import { Batches as productPricingV0Batches } from "./generated/productPricing/v0/Batches";
 import { Batches as productPricingV20220501Batches } from "./generated/productPricing/v20220501/Batches";
 import { Definitions as definitionsProductTypesV20200901Definitions } from "./generated/definitionsProductTypes/v20200901/Definitions";
 import { Reports as reportsV20200904Reports } from "./generated/reports/v20200904/Reports";
@@ -82,7 +83,8 @@ export class SellingPartner extends SellingPartnerCore {
   public orders: ordersV0Orders;
   public productFees: productFeesV0Products;
   public productPricing: {
-    v0: productPricingV0Products;
+    v0Products: productPricingV0Products;
+    v0Batches: productPricingV0Batches;
     v20220501: productPricingV20220501Batches;
   };
   public definitionsProductTypes: definitionsProductTypesV20200901Definitions;
@@ -154,7 +156,8 @@ export class SellingPartner extends SellingPartnerCore {
     this.orders = new ordersV0Orders(this.httpClient);
     this.productFees = new productFeesV0Products(this.httpClient);
     this.productPricing = {
-      v0: new productPricingV0Products(this.httpClient),
+      v0Products: new productPricingV0Products(this.httpClient),
+      v0Batches: new productPricingV0Batches(this.httpClient),
       v20220501: new productPricingV20220501Batches(this.httpClient),
     };
     this.definitionsProductTypes = new definitionsProductTypesV20200901Definitions(

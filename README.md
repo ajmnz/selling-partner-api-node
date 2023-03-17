@@ -88,6 +88,15 @@ const item = await sp.catalogItems.v0.getCatalogItem("my-asin", {
 });
 ```
 
+### Accessing types for each endpoint
+
+If you any of the types of a specific endpoint, you can import them through their dedicated path at `sp-api-node/<api>/<version?>`.
+
+```ts
+import type { Marketplace } from "sp-api-node/sellers";
+import type { Order, OrderItem } from "sp-api-node/orders/v0";
+```
+
 ### Handling rate limits
 
 This SDK automatically handles rate limits and waits for the necessary amount of time by reading the `x-amzn-RateLimit-Limit` header. See [Usage Plans and Rate Limits in the SP-API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).

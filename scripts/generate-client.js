@@ -7,6 +7,12 @@ const { generateApi } = require("swagger-typescript-api");
 
 const prettierConfig = require("../.prettierrc.js");
 
+function capitalize(str, lower = false) {
+  return (lower ? str.toLowerCase() : str).replace(/(?:^|\s|["'([{])+\S/g, (match) =>
+    match.toUpperCase()
+  );
+}
+
 (async () => {
   const srcPath = path.join(__dirname, "../src");
 
@@ -76,41 +82,64 @@ const prettierConfig = require("../.prettierrc.js");
         recursive: true,
         force: true,
       });
-      const typesFile = result.files.find(
+
+      const typesFiles = result.files.filter(
         ({ name }) => !["data-contracts.ts", "http-client.ts"].includes(name)
       );
-      if (!typesFile) {
+
+      if (!typesFiles.length) {
         throw new Error("Missing types file");
       }
 
-      const content = typesFile.content.replace(
-        /(?<=import .* from ")(\.\/http-client)(?=";)/,
-        version === "null" ? "../../http-client" : "../../../http-client"
-      );
+      let i = 0;
+      const indexContent = [];
 
-      fs.writeFileSync(path.join(outputPath, typesFile.name), content);
+      for (const typesFile of typesFiles) {
+        const isFirst = i === 0;
+        const content = typesFile.content.replace(
+          /(?<=import .* from ")(\.\/http-client)(?=";)/,
+          version === "null" ? "../../http-client" : "../../../http-client"
+        );
 
-      const objectName = typesFile.name.replace(".ts", "");
-      const importedClass = `${modelName}${
-        version === "null" ? "" : version.toUpperCase()
-      }${objectName}`;
+        fs.writeFileSync(path.join(outputPath, typesFile.name), content);
 
-      imports.push(
-        `import { ${typesFile.name.replace(
-          ".ts",
-          ""
-        )} as ${importedClass} } from "./generated/${modelName}${
-          version === "null" ? "" : `/${version}`
-        }/${objectName}";`
-      );
+        // Add index with exports
 
-      if (version === "null") {
-        declaration.push(`${importedClass}`);
-        instance.push(`new ${importedClass}(this.httpClient)`);
-      } else {
-        declaration.push(`${version}: ${importedClass}`);
-        instance.push(`${version}: new ${importedClass}(this.httpClient)`);
+        if (isFirst) {
+          indexContent.push('export * from "./data-contracts";');
+        }
+
+        const objectName = typesFile.name.replace(".ts", "");
+        const importedClass = `${modelName}${
+          version === "null" ? "" : version.toUpperCase()
+        }${objectName}`;
+
+        imports.push(
+          `import { ${typesFile.name.replace(
+            ".ts",
+            ""
+          )} as ${importedClass} } from "./generated/${modelName}${
+            version === "null" ? "" : `/${version}`
+          }/${objectName}";`
+        );
+
+        if (version === "null") {
+          declaration.push(`${importedClass}`);
+          instance.push(`new ${importedClass}(this.httpClient)`);
+        } else if (typesFiles.length === 1) {
+          declaration.push(`${version}: ${importedClass}`);
+          instance.push(`${version}: new ${importedClass}(this.httpClient)`);
+        } else {
+          declaration.push(`${version}${capitalize(objectName)}: ${importedClass}`);
+          instance.push(
+            `${version}${capitalize(objectName)}: new ${importedClass}(this.httpClient)`
+          );
+        }
+
+        i++;
       }
+
+      fs.writeFileSync(path.join(outputPath, "index.ts"), indexContent.join("\n") + "\n");
     }
 
     if (declaration.length === 1) {
