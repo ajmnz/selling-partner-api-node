@@ -10,7 +10,7 @@ github:
 
 npm:
   publish: true
-  publishPath: dist
+  publishArgs: ["dist"]
 
 hooks:
   before:init:
