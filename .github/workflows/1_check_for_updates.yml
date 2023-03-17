@@ -28,6 +28,10 @@ jobs:
         run: |
           sh scripts/generate-client.sh
 
+      - name: Format and lint
+        run: |
+          yarn format && yarn lint
+
       - name: Detect changed files
         id: change
         run: |
