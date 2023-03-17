@@ -6,9 +6,6 @@
   "author": "ajmnz <arnau@ajb.cat>",
   "license": "MIT",
   "description": "🛡 Fully typesafe Amazon Selling Partner API SDK for Node.js",
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ajmnz/selling-partner-api-node"
