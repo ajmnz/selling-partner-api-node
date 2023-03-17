@@ -23,8 +23,7 @@
   ],
   "packageManager": "yarn@3.3.1",
   "scripts": {
-    "build": "tsc && yarn copy:models && yarn copy:packageJson && node ./scripts/replace-imports.js",
-    "copy:models": "copyfiles -u 2 dist/generated/**/* dist && rimraf -rf dist/generated",
+    "build": "tsc && yarn copy:packageJson",
     "copy:packageJson": "copyfiles package.json README.md dist",
     "lint": "eslint --fix src",
     "format": "prettier --write src",

@@ -16,7 +16,23 @@ function capitalize(str, lower = false) {
 (async () => {
   const srcPath = path.join(__dirname, "../src");
 
-  fs.rmSync(path.join(srcPath, "generated"), { force: true, recursive: true });
+  const toDelete = fs
+    .readdirSync(srcPath)
+    .filter(
+      (p) =>
+        ![
+          "templates",
+          "http-client.ts",
+          "index.ts",
+          "SellingPartner.ts",
+          "SellingPartnerCore.ts",
+          "types.ts",
+        ].includes(p)
+    );
+
+  for (const p of toDelete) {
+    fs.rmSync(path.join(srcPath, p), { force: true, recursive: true });
+  }
 
   const modelsPath = path.join(__dirname, "../tmp-models");
   const modelDirs = fs.readdirSync(modelsPath);
@@ -56,7 +72,7 @@ function capitalize(str, lower = false) {
   for (const modelName of Object.keys(models)) {
     const versions = models[modelName];
     const versionNames = Object.keys(versions);
-    const baseDir = path.join(srcPath, "generated", modelName);
+    const baseDir = path.join(srcPath, modelName);
     const declaration = [];
     const instance = [];
 
@@ -98,7 +114,7 @@ function capitalize(str, lower = false) {
         const isFirst = i === 0;
         const content = typesFile.content.replace(
           /(?<=import .* from ")(\.\/http-client)(?=";)/,
-          version === "null" ? "../../http-client" : "../../../http-client"
+          version === "null" ? "../http-client" : "../../http-client"
         );
 
         fs.writeFileSync(path.join(outputPath, typesFile.name), content);
@@ -118,7 +134,7 @@ function capitalize(str, lower = false) {
           `import { ${typesFile.name.replace(
             ".ts",
             ""
-          )} as ${importedClass} } from "./generated/${modelName}${
+          )} as ${importedClass} } from "./${modelName}${
             version === "null" ? "" : `/${version}`
           }/${objectName}";`
         );
