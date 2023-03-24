@@ -29,7 +29,7 @@ export class Fba<SecurityDataType = unknown> {
   }
 
   /**
-   * @description Returns information that lets a seller know if Amazon recommends sending an item to a given marketplace. In some cases, Amazon provides guidance for why a given SellerSKU or ASIN is not recommended for shipment to Amazon's fulfillment network. Sellers may still ship items that are not recommended, at their discretion. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns information that lets a seller know if Amazon recommends sending an item to a given marketplace. In some cases, Amazon provides guidance for why a given SellerSKU or ASIN is not recommended for shipment to Amazon's fulfillment network. Sellers may still ship items that are not recommended, at their discretion. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name GetInboundGuidance
@@ -61,7 +61,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns one or more inbound shipment plans, which provide the information you need to create one or more inbound shipments for a set of items that you specify. Multiple inbound shipment plans might be required so that items can be optimally placed in Amazon's fulfillment network—for example, positioning inventory closer to the customer. Alternatively, two inbound shipment plans might be created with the same Amazon fulfillment center destination if the two shipment plans require different processing—for example, items that require labels must be shipped separately from stickerless, commingled inventory. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns one or more inbound shipment plans, which provide the information you need to create one or more inbound shipments for a set of items that you specify. Multiple inbound shipment plans might be required so that items can be optimally placed in Amazon's fulfillment network—for example, positioning inventory closer to the customer. Alternatively, two inbound shipment plans might be created with the same Amazon fulfillment center destination if the two shipment plans require different processing—for example, items that require labels must be shipped separately from stickerless, commingled inventory. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name CreateInboundShipmentPlan
@@ -84,7 +84,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name CreateInboundShipment
@@ -104,7 +104,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new items is not supported. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new items is not supported. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name UpdateInboundShipment
@@ -124,7 +124,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name GetPreorderInfo
@@ -147,7 +147,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns information needed to confirm a shipment for pre-order. Call this operation after calling the getPreorderInfo operation to get the NeedByDate value and other pre-order information about the shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns information needed to confirm a shipment for pre-order. Call this operation after calling the getPreorderInfo operation to get the NeedByDate value and other pre-order information about the shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name ConfirmPreorder
@@ -175,7 +175,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's fulfillment network. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's fulfillment network. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name GetPrepInstructions
@@ -214,7 +214,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns current transportation information about an inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns current transportation information about an inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name GetTransportDetails
@@ -229,7 +229,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Sends transportation information to Amazon about an inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Sends transportation information to Amazon about an inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name PutTransportDetails
@@ -250,7 +250,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier. To be successful, you must call this operation before the VoidDeadline date that is returned by the getTransportDetails operation. Important: The VoidDeadline date is 24 hours after you confirm a Small Parcel shipment transportation request or one hour after you confirm a Less Than Truckload/Full Truckload (LTL/FTL) shipment transportation request. After the void deadline passes, your account will be charged for the shipping cost. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier. To be successful, you must call this operation before the VoidDeadline date that is returned by the getTransportDetails operation. Important: The VoidDeadline date is 24 hours after you confirm a Small Parcel shipment transportation request or one hour after you confirm a Less Than Truckload/Full Truckload (LTL/FTL) shipment transportation request. After the void deadline passes, your account will be charged for the shipping cost. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name VoidTransport
@@ -265,7 +265,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier. Prior to calling the estimateTransport operation, you must call the putTransportDetails operation to provide Amazon with the transportation information for the inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier. Prior to calling the estimateTransport operation, you must call the putTransportDetails operation to provide Amazon with the transportation information for the inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name EstimateTransport
@@ -280,7 +280,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their account for the shipping cost, and requests that the Amazon-partnered carrier ship the inbound shipment. Prior to calling the confirmTransport operation, you should call the getTransportDetails operation to get the Amazon-partnered shipping estimate. Important: After confirming the transportation request, if the seller decides that they do not want the Amazon-partnered carrier to ship the inbound shipment, you can call the voidTransport operation to cancel the transportation request. Note that for a Small Parcel shipment, the seller has 24 hours after confirming a transportation request to void the transportation request. For a Less Than Truckload/Full Truckload (LTL/FTL) shipment, the seller has one hour after confirming a transportation request to void it. After the grace period has expired the seller's account will be charged for the shipping cost. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their account for the shipping cost, and requests that the Amazon-partnered carrier ship the inbound shipment. Prior to calling the confirmTransport operation, you should call the getTransportDetails operation to get the Amazon-partnered shipping estimate. Important: After confirming the transportation request, if the seller decides that they do not want the Amazon-partnered carrier to ship the inbound shipment, you can call the voidTransport operation to cancel the transportation request. Note that for a Small Parcel shipment, the seller has 24 hours after confirming a transportation request to void the transportation request. For a Less Than Truckload/Full Truckload (LTL/FTL) shipment, the seller has one hour after confirming a transportation request to void it. After the grace period has expired the seller's account will be charged for the shipping cost. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name ConfirmTransport
@@ -295,7 +295,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name GetLabels
@@ -347,7 +347,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name GetBillOfLading
@@ -362,7 +362,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns a list of inbound shipments based on criteria that you specify. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns a list of inbound shipments based on criteria that you specify. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name GetShipments
@@ -414,7 +414,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns a list of items in a specified inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns a list of items in a specified inbound shipment. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name GetShipmentItemsByShipmentId
@@ -437,7 +437,7 @@ export class Fba<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+   * @description Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 30 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInbound
    * @name GetShipmentItems
