@@ -17,7 +17,6 @@ import { Feeds as feedsV20200904Feeds } from "./feeds/v20200904/Feeds";
 import { Feeds as feedsV20210630Feeds } from "./feeds/v20210630/Feeds";
 import { Finances as financesV0Finances } from "./finances/v0/Finances";
 import { Fba as fulfillmentInboundV0Fba } from "./fulfillmentInbound/v0/Fba";
-import { Fba as fulfillmentOutboundV20200701Fba } from "./fulfillmentOutbound/v20200701/Fba";
 import { Listings as listingsItemsV20200901Listings } from "./listingsItems/v20200901/Listings";
 import { Listings as listingsItemsV20210801Listings } from "./listingsItems/v20210801/Listings";
 import { Listings as listingsRestrictionsV20210801Listings } from "./listingsRestrictions/v20210801/Listings";
@@ -71,7 +70,6 @@ export class SellingPartner extends SellingPartnerCore {
   public feeds: { v20200904: feedsV20200904Feeds; v20210630: feedsV20210630Feeds };
   public finances: financesV0Finances;
   public fulfillmentInbound: fulfillmentInboundV0Fba;
-  public fulfillmentOutbound: fulfillmentOutboundV20200701Fba;
   public listingsItems: {
     v20200901: listingsItemsV20200901Listings;
     v20210801: listingsItemsV20210801Listings;
@@ -142,7 +140,6 @@ export class SellingPartner extends SellingPartnerCore {
     };
     this.finances = new financesV0Finances(this.httpClient);
     this.fulfillmentInbound = new fulfillmentInboundV0Fba(this.httpClient);
-    this.fulfillmentOutbound = new fulfillmentOutboundV20200701Fba(this.httpClient);
     this.listingsItems = {
       v20200901: new listingsItemsV20200901Listings(this.httpClient),
       v20210801: new listingsItemsV20210801Listings(this.httpClient),

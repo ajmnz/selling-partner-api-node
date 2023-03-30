@@ -9,7 +9,7 @@ export class Fba<SecurityDataType = unknown> {
   }
 
   /**
-   * @description Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the `startDateTime` and `sellerSkus` parameters: - All inventory summaries with available details are returned when the `startDateTime` and `sellerSkus` parameters are omitted. - When `startDateTime` is provided, the operation returns inventory summaries that have had changes after the date and time specified. The `sellerSkus` parameter is ignored. **Important:** To avoid errors, use both `startDateTime` and `nextToken` to get the next page of inventory summaries that have changed after the date and time specified. - When the `sellerSkus` parameter is provided, the operation returns inventory summaries for only the specified `sellerSkus`. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 2 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+   * @description Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the `startDateTime`, `sellerSkus` and `sellerSku` parameters: - All inventory summaries with available details are returned when the `startDateTime`, `sellerSkus` and `sellerSku` parameters are omitted. - When `startDateTime` is provided, the operation returns inventory summaries that have had changes after the date and time specified. The `sellerSkus` and `sellerSku` parameters are ignored. **Important:** To avoid errors, use both `startDateTime` and `nextToken` to get the next page of inventory summaries that have changed after the date and time specified. - When the `sellerSkus` parameter is provided, the operation returns inventory summaries for only the specified `sellerSkus`. The `sellerSku` parameter is ignored. - When the `sellerSku` parameter is provided, the operation returns inventory summaries for only the specified `sellerSku`. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 2 | 2 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags fbaInventory
    * @name GetInventorySummaries
@@ -36,7 +36,9 @@ export class Fba<SecurityDataType = unknown> {
        * @maxItems 50
        */
       sellerSkus?: string[];
-      /** String token returned in the response of your previous request. */
+      /** A single seller SKU used for querying the specified seller SKU inventory summaries. */
+      sellerSku?: string;
+      /** String token returned in the response of your previous request. The string token will expire 30 seconds after being created. */
       nextToken?: string;
       /**
        * The marketplace ID for the marketplace for which to return inventory summaries.

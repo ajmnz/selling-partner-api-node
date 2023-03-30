@@ -76,6 +76,11 @@ function capitalize(str, lower = false) {
     const declaration = [];
     const instance = [];
 
+    if (modelName === "fulfillmentOutbound") {
+      // Temp fix until https://github.com/acacode/swagger-typescript-api/pull/515 is merged
+      continue;
+    }
+
     for (const version of versionNames) {
       let outputPath = path.join(baseDir, version);
       if (version === "null") {
