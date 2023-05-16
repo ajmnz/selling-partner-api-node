@@ -11,6 +11,7 @@
 
 /** Request schema. */
 export interface GetMyFeesEstimateRequest {
+  /** A product, marketplace, and proposed price used to request estimated fees. */
   FeesEstimateRequest?: FeesEstimateRequest;
 }
 
@@ -19,6 +20,7 @@ export type GetMyFeesEstimatesRequest = FeesEstimateByIdRequest[];
 
 /** A product, marketplace, and proposed price used to request estimated fees. */
 export interface FeesEstimateByIdRequest {
+  /** A product, marketplace, and proposed price used to request estimated fees. */
   FeesEstimateRequest?: FeesEstimateRequest;
   /** The type of product identifier used in a `FeesEstimateByIdRequest`. */
   IdType: IdType;
@@ -26,6 +28,7 @@ export interface FeesEstimateByIdRequest {
   IdValue: string;
 }
 
+/** A product, marketplace, and proposed price used to request estimated fees. */
 export interface FeesEstimateRequest {
   /** A marketplace identifier. */
   MarketplaceId: string;
