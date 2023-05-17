@@ -2,17 +2,12 @@ import type {
   ConfirmShipmentErrorResponse,
   ConfirmShipmentRequest,
   GetOrderAddressResponse,
-  GetOrderApprovalsResponse,
   GetOrderBuyerInfoResponse,
   GetOrderItemsBuyerInfoResponse,
   GetOrderItemsResponse,
   GetOrderRegulatedInfoResponse,
   GetOrderResponse,
   GetOrdersResponse,
-  ItemApprovalStatus,
-  ItemApprovalType,
-  UpdateItemsApprovalsErrorResponse,
-  UpdateOrderApprovalsRequest,
   UpdateShipmentStatusErrorResponse,
   UpdateShipmentStatusRequest,
   UpdateVerificationStatusErrorResponse,
@@ -122,16 +117,6 @@ export class Orders<SecurityDataType = unknown> {
       IsISPU?: boolean;
       /** The store chain store identifier. Linked to a specific store in a store chain. */
       StoreChainStoreId?: string;
-      /**
-       * When set, only return orders that contain items which approval type is contained in the specified approval types.
-       * @maxItems 1
-       */
-      ItemApprovalTypes?: ItemApprovalType[];
-      /**
-       * When set, only return orders that contain items which approval status is contained in the specified approval status.
-       * @maxItems 6
-       */
-      ItemApprovalStatus?: ItemApprovalStatus[];
     },
     params: RequestParams = {}
   ) =>
@@ -285,59 +270,6 @@ export class Orders<SecurityDataType = unknown> {
       path: `/orders/v0/orders/${orderId}/regulatedInfo`,
       method: "PATCH",
       code: "patch:/orders/v0/orders/{orderId}/regulatedInfo",
-      body: payload,
-      type: ContentType.Json,
-      ...params,
-    });
-  /**
-   * @description Returns detailed order items approvals information for the order specified. If NextToken is provided, it's used to retrieve the next page of order items approvals. **Usage Plans:** | Plan type | Rate (requests per second) | Burst | | ---- | ---- | ---- | |Default| 0.5 | 30 | |Selling partner specific| Variable | Variable | The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-   *
-   * @tags approvals
-   * @name GetOrderItemsApprovals
-   * @request GET:/orders/v0/orders/{orderId}/approvals
-   */
-  getOrderItemsApprovals = (
-    orderId: string,
-    query?: {
-      /** A string token returned in the response of your previous request. */
-      NextToken?: string;
-      /**
-       * When set, only return approvals for items which approval type is contained in the specified approval types.
-       * @maxItems 1
-       */
-      ItemApprovalTypes?: ItemApprovalType[];
-      /**
-       * When set, only return approvals that contain items which approval status is contained in the specified approval status.
-       * @maxItems 6
-       */
-      ItemApprovalStatus?: ItemApprovalStatus[];
-    },
-    params: RequestParams = {}
-  ) =>
-    this.http.request<GetOrderApprovalsResponse, GetOrderApprovalsResponse>({
-      path: `/orders/v0/orders/${orderId}/approvals`,
-      method: "GET",
-      code: "get:/orders/v0/orders/{orderId}/approvals",
-      query,
-      format: "json",
-      ...params,
-    });
-  /**
-   * @description Update the order items approvals for an order that you specify. **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 15 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
-   *
-   * @tags approvals
-   * @name UpdateOrderItemsApprovals
-   * @request POST:/orders/v0/orders/{orderId}/approvals
-   */
-  updateOrderItemsApprovals = (
-    orderId: string,
-    payload: UpdateOrderApprovalsRequest,
-    params: RequestParams = {}
-  ) =>
-    this.http.request<void, UpdateItemsApprovalsErrorResponse>({
-      path: `/orders/v0/orders/${orderId}/approvals`,
-      method: "POST",
-      code: "post:/orders/v0/orders/{orderId}/approvals",
       body: payload,
       type: ContentType.Json,
       ...params,

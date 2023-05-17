@@ -265,10 +265,6 @@ export interface Order {
   HasRegulatedItems?: boolean;
   /** The status of the electronic invoice. */
   ElectronicInvoiceStatus?: ElectronicInvoiceStatus;
-  /** Set of approval types which applies to at least one order item in the order. */
-  ItemApprovalTypes?: ItemApprovalType[];
-  /** Subset of all ItemApprovalStatus that are set in at least one of the order items subject to approvals. */
-  ItemApprovalStatus?: ItemApprovalStatus[];
 }
 
 /** Buyer information for an order. */
@@ -608,8 +604,6 @@ export interface OrderItem {
   BuyerInfo?: ItemBuyerInfo;
   /** Information about whether or not a buyer requested cancellation. */
   BuyerRequestedCancel?: BuyerRequestedCancel;
-  /** Item approval context containing the information regarding the status and progress of the item approval. */
-  ItemApprovalContext?: ItemApprovalContext;
   /** A list of serial numbers for electronic products that are shipped to customers. Returned for FBA orders only. */
   SerialNumbers?: string[];
 }
@@ -765,133 +759,6 @@ export enum ElectronicInvoiceStatus {
   Processing = "Processing",
   Errored = "Errored",
   Accepted = "Accepted",
-}
-
-/** Defines the approval process types available for order items. */
-export enum ItemApprovalType {
-  LEONARDI_APPROVAL = "LEONARDI_APPROVAL",
-}
-
-/** Defines the possible status of an order item approval. */
-export enum ItemApprovalStatus {
-  PENDING_SELLING_PARTNER_APPROVAL = "PENDING_SELLING_PARTNER_APPROVAL",
-  PROCESSING_SELLING_PARTNER_APPROVAL = "PROCESSING_SELLING_PARTNER_APPROVAL",
-  PENDING_AMAZON_APPROVAL = "PENDING_AMAZON_APPROVAL",
-  APPROVED = "APPROVED",
-  APPROVED_WITH_CHANGES = "APPROVED_WITH_CHANGES",
-  DECLINED = "DECLINED",
-}
-
-/** Generic item approval context. Check the applicable restrictions at the specific approval type schemas. */
-export interface ItemApprovalContext {
-  /** The approval process type required for the order item. */
-  ApprovalType: ItemApprovalType;
-  /** Current status of the order item approval. */
-  ApprovalStatus: ItemApprovalStatus;
-  /** List of additional data elements supporting the approval process. Check the applicable restrictions at the specific approval type schemas. */
-  ApprovalSupportData?: ApprovalSupportDataElementList;
-}
-
-/** List of additional data elements supporting the approval process. Check the applicable restrictions at the specific approval type schemas. */
-export type ApprovalSupportDataElementList = ApprovalSupportDataElement[];
-
-/** <Name, Value> tuple to define item approval support data elements. */
-export interface ApprovalSupportDataElement {
-  /** Name of the approval support element. Allowed names are defined in specific approval types schemas. */
-  Name: string;
-  /** String value of the approval support element. */
-  Value: string;
-}
-
-/** Generic item approval. Check the applicable restrictions at the specific approval type schemas. */
-export interface ItemApproval {
-  /** Sequence number of the item approval. Each ItemApproval gets its sequenceId automatically from a monotonic increasing function. */
-  SequenceId: number;
-  /** Timestamp when the ItemApproval was recorded by Amazon's internal order approvals system. In ISO 8601 date time format. */
-  Timestamp: string;
-  /** High level actors involved in the approval process. */
-  Actor: "SELLING_PARTNER" | "AMAZON";
-  /** Person or system that triggers the approval actions on behalf of the actor. */
-  Approver?: string;
-  /** Approval action that defines the behavior of the ItemApproval. */
-  ApprovalAction: ItemApprovalAction;
-  /** Status of approval action. */
-  ApprovalActionProcessStatus: "PROCESSING" | "SUCCESS" | "ERROR";
-  /** Optional message to communicate optional additional context about the current status of the approval action. */
-  ApprovalActionProcessStatusMessage?: string;
-}
-
-/** This object represents an approval action used by the actors in the order item approval process. Check the applicable restrictions at the specific approval type schemas. */
-export interface ItemApprovalAction {
-  /** Defines the type of action for the approval. */
-  ActionType: "APPROVE" | "DECLINE" | "APPROVE_WITH_CHANGES";
-  /** Comment message to provide optional additional context on the approval action. */
-  Comment?: string;
-  /** Changes required for the approval. Each approval type defines the allowed changes valid sub-set in its specific schema. */
-  Changes?: {
-    /** Price to be charged to the customer for each unit of the item. If substitutedBy is specified, this value applies to the substitution item. */
-    ItemPrice?: Money;
-    /** Quantity approved. If substitutedBy is specified, this value applies to the substitution item. */
-    Quantity?: number;
-    /** Identifier of the item to substitute this item in the order. */
-    SubstitutedBy?: ItemIdentifier;
-  };
-}
-
-/** Item identifiers used in the context of approvals operations. */
-export interface ItemIdentifier {
-  /** Defines the type of identifiers allowed to specify a substitution. */
-  IdentifierType: "ASIN" | "SELLER_SKU" | "EXTERNAL_ID";
-  Identifier: string;
-}
-
-/** The response schema for the getOrderApprovalsItems operation. */
-export interface GetOrderApprovalsResponse {
-  /** The payload for the getOrderItemsApprovals operation. */
-  payload?: OrderApprovalsResponse;
-  /** One or more unexpected errors occurred during the getOrderItemsApprovals operation. */
-  errors?: ErrorList;
-}
-
-/** The order items list with approvals along with the order ID. */
-export interface OrderApprovalsResponse {
-  /** When present and not empty, pass this string token in the next request to return the next response page. */
-  NextToken?: string;
-  /** List of OrderItemApprovals. */
-  OrderItemsApprovalsList: OrderItemApprovals[];
-}
-
-/** List of item approvals gathered during the approval process. */
-export interface OrderItemApprovals {
-  /** The unique identifier of the order item. */
-  OrderItemId: string;
-  /** The approval process type required for the order item. */
-  ApprovalType: ItemApprovalType;
-  /** Current status of the order item approval. */
-  ApprovalStatus: ItemApprovalStatus;
-  ItemApprovals: ItemApproval[];
-}
-
-/** The request body for the updateOrderItemsApprovals operation. */
-export interface UpdateOrderApprovalsRequest {
-  /** Person or system that triggers the approval actions on behalf of the actor. */
-  Approver?: string;
-  /** A list of item approval requests. */
-  OrderItemsApprovalRequests: OrderItemApprovalRequest[];
-}
-
-/** Order item apecific approval request. */
-export interface OrderItemApprovalRequest {
-  /** The unique identifier of the order item. */
-  OrderItemId: string;
-  /** Approval action that defines the behavior of the ItemApproval. */
-  ApprovalAction: ItemApprovalAction;
-}
-
-/** The error response schema for the updateOrderItemsApprovals operation. */
-export interface UpdateItemsApprovalsErrorResponse {
-  /** One or more unexpected errors occurred during the updateOrderItemsApprovals operation. */
-  errors?: ErrorList;
 }
 
 /** The request schema for an shipment confirmation. */
