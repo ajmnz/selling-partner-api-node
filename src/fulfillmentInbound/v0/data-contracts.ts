@@ -457,7 +457,7 @@ export interface InboundShipmentHeader {
   ShipmentStatus: ShipmentStatus;
   /** The preference for label preparation for an inbound shipment. */
   LabelPrepPreference: LabelPrepPreference;
-  /** How the seller intends to provide box contents information for a shipment. */
+  /** How the seller intends to provide box contents information for a shipment. Leaving this field blank is equivalent to selecting `NONE`, which will incur a fee if the seller does not provide box contents information. */
   IntendedBoxContentsSource?: IntendedBoxContentsSource;
 }
 
@@ -563,7 +563,7 @@ export interface InboundShipmentPlanRequestItem {
 
 export type InboundShipmentPlanRequestItemList = InboundShipmentPlanRequestItem[];
 
-/** How the seller intends to provide box contents information for a shipment. */
+/** How the seller intends to provide box contents information for a shipment. Leaving this field blank is equivalent to selecting `NONE`, which will incur a fee if the seller does not provide box contents information. */
 export enum IntendedBoxContentsSource {
   NONE = "NONE",
   FEED = "FEED",
