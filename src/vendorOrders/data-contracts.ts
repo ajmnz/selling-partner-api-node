@@ -77,7 +77,7 @@ export interface OrderDetails {
   buyingParty?: PartyIdentification;
   /** Name/Address and tax details of the selling party. */
   sellingParty?: PartyIdentification;
-  /** Name/Address and tax details of the ship to party. */
+  /** Name/Address and tax details of the ship to party. Find a list of fulfillment center addresses for a region on the [Resources page of Amazon Vendor Central](https://vendorcentral.amazon.com/hz/vendor/members/support/help/node/GPZ88XH8HQM97ZV6). */
   shipToParty?: PartyIdentification;
   /** Name/Address and tax details of the bill to party. */
   billToParty?: PartyIdentification;
@@ -324,7 +324,7 @@ export interface OrderStatus {
   lastUpdatedDate?: string;
   /** Name/Address and tax details of the selling party. */
   sellingParty: PartyIdentification;
-  /** Name/Address and tax details of the ship to party. */
+  /** Name/Address and tax details of the ship to party. Find a list of fulfillment center addresses for a region on the [Resources page of Amazon Vendor Central](https://vendorcentral.amazon.com/hz/vendor/members/support/help/node/GPZ88XH8HQM97ZV6). */
   shipToParty: PartyIdentification;
   /** Detailed order status. */
   itemStatus: ItemStatus;
