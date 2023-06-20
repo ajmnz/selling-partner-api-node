@@ -24,6 +24,7 @@ export class Feeds<SecurityDataType = unknown> {
    * @tags feeds
    * @name GetFeeds
    * @request GET:/feeds/2020-09-04/feeds
+   * @deprecated
    */
   getFeeds = (
     query?: {
@@ -86,6 +87,7 @@ export class Feeds<SecurityDataType = unknown> {
    * @tags feeds
    * @name CreateFeed
    * @request POST:/feeds/2020-09-04/feeds
+   * @deprecated
    */
   createFeed = (body: CreateFeedSpecification, params: RequestParams = {}) =>
     this.http.request<CreateFeedResponse, CreateFeedResponse>({
@@ -103,6 +105,7 @@ export class Feeds<SecurityDataType = unknown> {
    * @tags feeds
    * @name GetFeed
    * @request GET:/feeds/2020-09-04/feeds/{feedId}
+   * @deprecated
    */
   getFeed = (feedId: string, params: RequestParams = {}) =>
     this.http.request<GetFeedResponse, GetFeedResponse>({
@@ -118,6 +121,7 @@ export class Feeds<SecurityDataType = unknown> {
    * @tags feeds
    * @name CancelFeed
    * @request DELETE:/feeds/2020-09-04/feeds/{feedId}
+   * @deprecated
    */
   cancelFeed = (feedId: string, params: RequestParams = {}) =>
     this.http.request<CancelFeedResponse, CancelFeedResponse>({
@@ -133,6 +137,7 @@ export class Feeds<SecurityDataType = unknown> {
    * @tags feeds
    * @name CreateFeedDocument
    * @request POST:/feeds/2020-09-04/documents
+   * @deprecated
    */
   createFeedDocument = (
     body: CreateFeedDocumentSpecification,
@@ -153,6 +158,7 @@ export class Feeds<SecurityDataType = unknown> {
    * @tags feeds
    * @name GetFeedDocument
    * @request GET:/feeds/2020-09-04/documents/{feedDocumentId}
+   * @deprecated
    */
   getFeedDocument = (feedDocumentId: string, params: RequestParams = {}) =>
     this.http.request<GetFeedDocumentResponse, GetFeedDocumentResponse>({

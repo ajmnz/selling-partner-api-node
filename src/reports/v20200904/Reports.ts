@@ -27,6 +27,7 @@ export class Reports<SecurityDataType = unknown> {
    * @tags reports
    * @name GetReports
    * @request GET:/reports/2020-09-04/reports
+   * @deprecated
    */
   getReports = (
     query?: {
@@ -89,6 +90,7 @@ export class Reports<SecurityDataType = unknown> {
    * @tags reports
    * @name CreateReport
    * @request POST:/reports/2020-09-04/reports
+   * @deprecated
    */
   createReport = (body: CreateReportSpecification, params: RequestParams = {}) =>
     this.http.request<CreateReportResponse, CreateReportResponse>({
@@ -106,6 +108,7 @@ export class Reports<SecurityDataType = unknown> {
    * @tags reports
    * @name GetReport
    * @request GET:/reports/2020-09-04/reports/{reportId}
+   * @deprecated
    */
   getReport = (reportId: string, params: RequestParams = {}) =>
     this.http.request<GetReportResponse, GetReportResponse>({
@@ -121,6 +124,7 @@ export class Reports<SecurityDataType = unknown> {
    * @tags reports
    * @name CancelReport
    * @request DELETE:/reports/2020-09-04/reports/{reportId}
+   * @deprecated
    */
   cancelReport = (reportId: string, params: RequestParams = {}) =>
     this.http.request<CancelReportResponse, CancelReportResponse>({
@@ -136,6 +140,7 @@ export class Reports<SecurityDataType = unknown> {
    * @tags reports
    * @name GetReportSchedules
    * @request GET:/reports/2020-09-04/schedules
+   * @deprecated
    */
   getReportSchedules = (
     query: {
@@ -162,6 +167,7 @@ export class Reports<SecurityDataType = unknown> {
    * @tags reports
    * @name CreateReportSchedule
    * @request POST:/reports/2020-09-04/schedules
+   * @deprecated
    */
   createReportSchedule = (
     body: CreateReportScheduleSpecification,
@@ -182,6 +188,7 @@ export class Reports<SecurityDataType = unknown> {
    * @tags reports
    * @name GetReportSchedule
    * @request GET:/reports/2020-09-04/schedules/{reportScheduleId}
+   * @deprecated
    */
   getReportSchedule = (reportScheduleId: string, params: RequestParams = {}) =>
     this.http.request<GetReportScheduleResponse, GetReportScheduleResponse>({
@@ -197,6 +204,7 @@ export class Reports<SecurityDataType = unknown> {
    * @tags reports
    * @name CancelReportSchedule
    * @request DELETE:/reports/2020-09-04/schedules/{reportScheduleId}
+   * @deprecated
    */
   cancelReportSchedule = (reportScheduleId: string, params: RequestParams = {}) =>
     this.http.request<CancelReportScheduleResponse, CancelReportScheduleResponse>({
@@ -212,6 +220,7 @@ export class Reports<SecurityDataType = unknown> {
    * @tags reports
    * @name GetReportDocument
    * @request GET:/reports/2020-09-04/documents/{reportDocumentId}
+   * @deprecated
    */
   getReportDocument = (reportDocumentId: string, params: RequestParams = {}) =>
     this.http.request<GetReportDocumentResponse, GetReportDocumentResponse>({
