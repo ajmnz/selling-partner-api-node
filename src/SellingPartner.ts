@@ -29,6 +29,7 @@ import { Products as productPricingV0Products } from "./productPricing/v0/Produc
 import { Batches as productPricingV0Batches } from "./productPricing/v0/Batches";
 import { Batches as productPricingV20220501Batches } from "./productPricing/v20220501/Batches";
 import { Definitions as definitionsProductTypesV20200901Definitions } from "./definitionsProductTypes/v20200901/Definitions";
+import { Replenishment as replenishment20221107Replenishment } from "./replenishment-2022-11-07/Replenishment";
 import { Reports as reportsV20200904Reports } from "./reports/v20200904/Reports";
 import { Reports as reportsV20210630Reports } from "./reports/v20210630/Reports";
 import { Sales as salesSales } from "./sales/Sales";
@@ -86,6 +87,7 @@ export class SellingPartner extends SellingPartnerCore {
     v20220501: productPricingV20220501Batches;
   };
   public definitionsProductTypes: definitionsProductTypesV20200901Definitions;
+  public replenishment20221107: replenishment20221107Replenishment;
   public reports: {
     v20200904: reportsV20200904Reports;
     v20210630: reportsV20210630Reports;
@@ -160,6 +162,7 @@ export class SellingPartner extends SellingPartnerCore {
     this.definitionsProductTypes = new definitionsProductTypesV20200901Definitions(
       this.httpClient
     );
+    this.replenishment20221107 = new replenishment20221107Replenishment(this.httpClient);
     this.reports = {
       v20200904: new reportsV20200904Reports(this.httpClient),
       v20210630: new reportsV20210630Reports(this.httpClient),
