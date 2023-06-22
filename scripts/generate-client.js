@@ -133,7 +133,7 @@ function capitalize(str, lower = false) {
         const objectName = typesFile.name.replace(".ts", "");
         const importedClass = `${modelName}${
           version === "null" ? "" : version.toUpperCase()
-        }${objectName}`;
+        }${objectName}`.replace(/-/g, "");
 
         imports.push(
           `import { ${typesFile.name.replace(
@@ -172,8 +172,8 @@ function capitalize(str, lower = false) {
         classInstance = classInstance.split(": ")[1];
       }
 
-      declarations.push(`public ${modelName}: ${classDeclaration};`);
-      instances.push(`this.${modelName} = ${classInstance};`);
+      declarations.push(`public ${modelName.replace(/-/g, "")}: ${classDeclaration};`);
+      instances.push(`this.${modelName.replace(/-/g, "")} = ${classInstance};`);
     } else {
       let declarationObj = `public ${modelName}: { `;
       declarationObj += declaration.join(", ");
