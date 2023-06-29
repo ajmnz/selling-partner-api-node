@@ -21,9 +21,10 @@ export interface ProcessingDirective {
 
 /** A notificationType specific filter. This object contains all of the currently available filters and properties that you can use to define a notificationType specific filter. */
 export type EventFilter = AggregationFilter &
-  MarketplaceFilter & {
+  MarketplaceFilter &
+  OrderChangeTypeFilter & {
     /** An eventFilterType value that is supported by the specific notificationType. This is used by the subscription service to determine the type of event filter. Refer to the section of the [Notifications Use Case Guide](doc:notifications-api-v1-use-case-guide) that describes the specific notificationType to determine if an eventFilterType is supported. */
-    eventFilterType: string;
+    eventFilterType: "ANY_OFFER_CHANGED" | "ORDER_CHANGE";
   };
 
 /** Use this event filter to customize your subscription to send notifications for only the specified marketplaceId's. */
@@ -51,6 +52,21 @@ export interface AggregationSettings {
 export enum AggregationTimePeriod {
   FiveMinutes = "FiveMinutes",
   TenMinutes = "TenMinutes",
+}
+
+/** Use this event filter to customize your subscription to send notifications for only the specified orderChangeType. */
+export interface OrderChangeTypeFilter {
+  /** A list of order change types to subscribe to (e.g. BuyerRequestedChange). To receive notifications of all change types, do not provide this list. */
+  orderChangeTypes?: OrderChangeTypes;
+}
+
+/** A list of order change types to subscribe to (e.g. BuyerRequestedChange). To receive notifications of all change types, do not provide this list. */
+export type OrderChangeTypes = OrderChangeTypeEnum[];
+
+/** The supported order change type of ORDER_CHANGE notification. */
+export enum OrderChangeTypeEnum {
+  OrderStatusChange = "OrderStatusChange",
+  BuyerRequestedChange = "BuyerRequestedChange",
 }
 
 /** Represents a subscription to receive notifications. */
