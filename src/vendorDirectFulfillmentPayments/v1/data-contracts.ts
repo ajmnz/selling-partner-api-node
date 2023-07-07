@@ -82,7 +82,7 @@ export interface PartyIdentification {
 export interface TaxRegistrationDetail {
   /** Tax registration type for the entity. */
   taxRegistrationType?: "VAT" | "GST";
-  /** Tax registration number for the party. For example, VAT ID. */
+  /** Tax registration number for the entity. For example, VAT ID, Consumption Tax ID. */
   taxRegistrationNumber: string;
   /** Address associated with the tax registration number. */
   taxRegistrationAddress?: Address;
