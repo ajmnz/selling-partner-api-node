@@ -189,7 +189,7 @@ export interface Order {
   /**
    * The shipment service level category of the order.
    *
-   * Possible values: Expedited, FreeEconomy, NextDay, SameDay, SecondDay, Scheduled, Standard.
+   * Possible values: Expedited, FreeEconomy, NextDay, Priority, SameDay, SecondDay, Scheduled, Standard.
    */
   ShipmentServiceLevelCategory?: string;
   /** The status of the Amazon Easy Ship order. This property is included only for Amazon Easy Ship orders. */
