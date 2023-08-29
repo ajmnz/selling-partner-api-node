@@ -82,7 +82,9 @@ export class SellingPartnerCore {
       const { accessKeyId, secretAccessKey, sessionToken, accessToken } =
         await this.authenticate();
 
-      config.headers!["x-amz-access-token"] = accessToken;
+      if (!config.headers["x-amz-access-token"]) {
+        config.headers!["x-amz-access-token"] = accessToken;
+      }
 
       this.log(`Executing '${config.url}'`);
 
