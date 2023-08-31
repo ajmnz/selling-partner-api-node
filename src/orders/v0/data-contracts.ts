@@ -590,7 +590,13 @@ export interface OrderItem {
    * Returned only for Amazon Easy Ship orders.
    */
   SerialNumberRequired?: boolean;
-  /** When true, transparency codes are required. */
+  /**
+   * When true, the ASIN is enrolled in Transparency and the Transparency serial number that needs to be submitted can be determined by the following:
+   *
+   * **1D or 2D Barcode:** This has a **T** logo. Submit either the 29-character alpha-numeric identifier beginning with **AZ** or **ZA**, or the 38-character Serialized Global Trade Item Number (SGTIN).
+   * **2D Barcode SN:** Submit the 7- to 20-character serial number barcode, which likely has the prefix **SN**. The serial number will be applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.
+   * **QR code SN:** Submit the URL that the QR code generates.
+   */
   IsTransparency?: boolean;
   /** The IOSS number for the marketplace. Sellers shipping to the European Union (EU) from outside of the EU must provide this IOSS number to their carrier when Amazon has collected the VAT on the sale. */
   IossNumber?: string;
