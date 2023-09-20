@@ -117,14 +117,6 @@ export class Orders<SecurityDataType = unknown> {
       IsISPU?: boolean;
       /** The store chain store identifier. Linked to a specific store in a store chain. */
       StoreChainStoreId?: string;
-      /** A date used for selecting orders with a earliest delivery date before (or at) a specified time. The date must be in ISO 8601 format. */
-      EarliestDeliveryDateBefore?: string;
-      /** A date used for selecting orders with a earliest delivery date after (or at) a specified time. The date must be in ISO 8601 format. */
-      EarliestDeliveryDateAfter?: string;
-      /** A date used for selecting orders with a latest delivery date before (or at) a specified time. The date must be in ISO 8601 format. */
-      LatestDeliveryDateBefore?: string;
-      /** A date used for selecting orders with a latest delivery date after (or at) a specified time. The date must be in ISO 8601 format. */
-      LatestDeliveryDateAfter?: string;
     },
     params: RequestParams = {}
   ) =>
