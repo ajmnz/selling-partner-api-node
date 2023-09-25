@@ -610,6 +610,64 @@ export interface OrderItem {
   BuyerRequestedCancel?: BuyerRequestedCancel;
   /** A list of serial numbers for electronic products that are shipped to customers. Returned for FBA orders only. */
   SerialNumbers?: string[];
+  /** Substitution preferences for the order item. This is an optional field and will only be present if seller supports substitutions like in case of some grocery sellers. */
+  SubstitutionPreferences?: SubstitutionPreferences;
+  /** Measurement information for the order item. */
+  Measurement?: Measurement;
+}
+
+export interface SubstitutionPreferences {
+  /** The type of substitution that these preferences represent. */
+  SubstitutionType: "CUSTOMER_PREFERENCE" | "AMAZON_RECOMMENDED" | "DO_NOT_SUBSTITUTE";
+  /** Substitution options for the order item. */
+  SubstitutionOptions?: SubstitutionOptionList;
+}
+
+/** A collection of substitution options. */
+export type SubstitutionOptionList = SubstitutionOption[];
+
+export interface SubstitutionOption {
+  /** The Amazon Standard Identification Number (ASIN) of the item. */
+  ASIN?: string;
+  /** The number of items to be picked for this substitution option.  */
+  QuantityOrdered?: number;
+  /** The seller stock keeping unit (SKU) of the item. */
+  SellerSKU?: string;
+  /** The title of the item. */
+  Title?: string;
+  /** Measurement information for the substitution option. */
+  Measurement?: Measurement;
+}
+
+export interface Measurement {
+  /** The unit of measure for this measurement. */
+  Unit:
+    | "OUNCES"
+    | "POUNDS"
+    | "KILOGRAMS"
+    | "GRAMS"
+    | "MILLIGRAMS"
+    | "INCHES"
+    | "FEET"
+    | "METERS"
+    | "CENTIMETERS"
+    | "MILLIMETERS"
+    | "SQUARE_METERS"
+    | "SQUARE_CENTIMETERS"
+    | "SQUARE_FEET"
+    | "SQUARE_INCHES"
+    | "GALLONS"
+    | "PINTS"
+    | "QUARTS"
+    | "FLUID_OUNCES"
+    | "LITERS"
+    | "CUBIC_METERS"
+    | "CUBIC_FEET"
+    | "CUBIC_INCHES"
+    | "CUBIC_CENTIMETERS"
+    | "COUNT";
+  /** The value of the measurement. */
+  Value: number;
 }
 
 /** A single order item's buyer information list with the order ID. */
