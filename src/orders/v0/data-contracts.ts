@@ -524,6 +524,8 @@ export interface OrderItem {
   SellerSKU?: string;
   /** An Amazon-defined order item identifier. */
   OrderItemId: string;
+  /** A list of associated items that a customer has purchased with a product. For example, a tire installation service purchased with tires. */
+  AssociatedItems?: AssociatedItem[];
   /** The name of the item. */
   Title?: string;
   /** The number of items in the order.  */
@@ -668,6 +670,21 @@ export interface Measurement {
     | "COUNT";
   /** The value of the measurement. */
   Value: number;
+}
+
+/** An item associated with an order item. For example, a tire installation service purchased with tires. */
+export interface AssociatedItem {
+  /** The order item's order identifier, in 3-7-7 format. */
+  OrderId?: string;
+  /** An Amazon-defined item identifier for the associated item. */
+  OrderItemId?: string;
+  /** The type of association an item has with an order item. */
+  AssociationType?: AssociationType;
+}
+
+/** The type of association an item has with an order item. */
+export enum AssociationType {
+  VALUE_ADD_SERVICE = "VALUE_ADD_SERVICE",
 }
 
 /** A single order item's buyer information list with the order ID. */

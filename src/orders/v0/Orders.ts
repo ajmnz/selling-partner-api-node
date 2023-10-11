@@ -57,7 +57,7 @@ export class Orders<SecurityDataType = unknown> {
       /**
        * A list of MarketplaceId values. Used to select orders that were placed in the specified marketplaces.
        *
-       * See the [Selling Partner API Developer Guide](doc:marketplace-ids) for a complete list of marketplaceId values.
+       * Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of marketplaceId values.
        * @maxItems 50
        */
       MarketplaceIds: string[];
