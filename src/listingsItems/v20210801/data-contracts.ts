@@ -39,7 +39,7 @@ export interface Item {
   /** Fulfillment availability for the listings item. */
   fulfillmentAvailability?: FulfillmentAvailability[];
   /** Vendor procurement information for the listings item. */
-  procurement?: ItemProcurement;
+  procurement?: ItemProcurement[];
 }
 
 /** Summary details of a listings item. */

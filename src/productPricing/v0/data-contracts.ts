@@ -504,11 +504,11 @@ export interface LowestPriceType {
   /** Indicates the type of quantity discount this price applies to. */
   quantityDiscountType?: QuantityDiscountType;
   /** The value calculated by adding ListingPrice + Shipping - Points. */
-  LandedPrice: MoneyType;
+  LandedPrice?: MoneyType;
   /** The price of the item. */
   ListingPrice: MoneyType;
   /** The shipping cost. */
-  Shipping: MoneyType;
+  Shipping?: MoneyType;
   /** The number of Amazon Points offered with the purchase of an item. */
   Points?: Points;
 }
