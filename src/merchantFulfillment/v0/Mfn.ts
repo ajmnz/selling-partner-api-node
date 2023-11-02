@@ -24,6 +24,7 @@ export class Mfn<SecurityDataType = unknown> {
    * @tags merchantFulfillment
    * @name GetEligibleShipmentServicesOld
    * @request POST:/mfn/v0/eligibleServices
+   * @deprecated
    */
   getEligibleShipmentServicesOld = (
     body: GetEligibleShipmentServicesRequest,
@@ -98,6 +99,7 @@ export class Mfn<SecurityDataType = unknown> {
    * @tags merchantFulfillment
    * @name CancelShipmentOld
    * @request PUT:/mfn/v0/shipments/{shipmentId}/cancel
+   * @deprecated
    */
   cancelShipmentOld = (shipmentId: string, params: RequestParams = {}) =>
     this.http.request<CancelShipmentResponse, CancelShipmentResponse>({
@@ -130,6 +132,7 @@ export class Mfn<SecurityDataType = unknown> {
    * @tags merchantFulfillment
    * @name GetAdditionalSellerInputsOld
    * @request POST:/mfn/v0/sellerInputs
+   * @deprecated
    */
   getAdditionalSellerInputsOld = (
     body: GetAdditionalSellerInputsRequest,
