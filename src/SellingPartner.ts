@@ -38,6 +38,7 @@ import { Service as servicesService } from "./services/Service";
 import { Fba as shipmentInvoicingV0Fba } from "./shipmentInvoicing/v0/Fba";
 import { Shipping as shippingShipping } from "./shipping/Shipping";
 import { Solicitations as solicitationsSolicitations } from "./solicitations/Solicitations";
+import { SupplySources as supplySourcesV20200701SupplySources } from "./supplySources/v20200701/SupplySources";
 import { Tokens as tokensV20210301Tokens } from "./tokens/v20210301/Tokens";
 import { Uploads as uploadsV20201101Uploads } from "./uploads/v20201101/Uploads";
 import { Vendor as vendorDirectFulfillmentInventoryV1Vendor } from "./vendorDirectFulfillmentInventory/v1/Vendor";
@@ -98,6 +99,7 @@ export class SellingPartner extends SellingPartnerCore {
   public shipmentInvoicing: shipmentInvoicingV0Fba;
   public shipping: shippingShipping;
   public solicitations: solicitationsSolicitations;
+  public supplySources: supplySourcesV20200701SupplySources;
   public tokens: tokensV20210301Tokens;
   public uploads: uploadsV20201101Uploads;
   public vendorDirectFulfillmentInventory: vendorDirectFulfillmentInventoryV1Vendor;
@@ -173,6 +175,7 @@ export class SellingPartner extends SellingPartnerCore {
     this.shipmentInvoicing = new shipmentInvoicingV0Fba(this.httpClient);
     this.shipping = new shippingShipping(this.httpClient);
     this.solicitations = new solicitationsSolicitations(this.httpClient);
+    this.supplySources = new supplySourcesV20200701SupplySources(this.httpClient);
     this.tokens = new tokensV20210301Tokens(this.httpClient);
     this.uploads = new uploadsV20201101Uploads(this.httpClient);
     this.vendorDirectFulfillmentInventory = new vendorDirectFulfillmentInventoryV1Vendor(
