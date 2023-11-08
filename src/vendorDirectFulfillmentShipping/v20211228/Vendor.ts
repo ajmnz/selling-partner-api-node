@@ -1,6 +1,4 @@
 import type {
-  CreateContainerLabelRequest,
-  CreateContainerLabelResponse,
   CreateShippingLabelsRequest,
   CustomerInvoice,
   CustomerInvoiceList,
@@ -279,26 +277,6 @@ export class Vendor<SecurityDataType = unknown> {
       path: `/vendor/directFulfillment/shipping/2021-12-28/packingSlips/${purchaseOrderNumber}`,
       method: "GET",
       code: "get:/vendor/directFulfillment/shipping/2021-12-28/packingSlips/{purchaseOrderNumber}",
-      format: "json",
-      ...params,
-    });
-  /**
-   * @description Creates container (pallet) label for provided shipment package association
-   *
-   * @tags createContainerLabel
-   * @name CreateContainerLabel
-   * @request POST:/vendor/directFulfillment/shipping/2021-12-28/containerLabel
-   */
-  createContainerLabel = (
-    body: CreateContainerLabelRequest,
-    params: RequestParams = {}
-  ) =>
-    this.http.request<CreateContainerLabelResponse, ErrorList>({
-      path: `/vendor/directFulfillment/shipping/2021-12-28/containerLabel`,
-      method: "POST",
-      code: "post:/vendor/directFulfillment/shipping/2021-12-28/containerLabel",
-      body,
-      type: ContentType.Json,
       format: "json",
       ...params,
     });
