@@ -40,6 +40,10 @@ function capitalize(str, lower = false) {
   const models = {};
 
   for (const modelDir of modelDirs) {
+    if (fs.startsWith(".")) {
+      continue;
+    }
+
     const modelFilenames = fs.readdirSync(path.join(modelsPath, modelDir));
     for (const modelFilename of modelFilenames) {
       if (!modelFilename.includes(".json")) {
