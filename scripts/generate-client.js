@@ -40,7 +40,7 @@ function capitalize(str, lower = false) {
   const models = {};
 
   for (const modelDir of modelDirs) {
-    if (fs.startsWith(".")) {
+    if (modelDir.startsWith(".")) {
       continue;
     }
 
