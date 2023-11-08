@@ -196,7 +196,7 @@ export interface Dimensions {
   unitOfMeasure: "IN" | "CM";
 }
 
-/** The weight. This object is mandatory when using the [`submitShipmentConfirmations`](https://developer-docs.amazon.com/sp-api/docs/vendor-direct-fulfillment-shipping-api-v1-reference#submitshipmentconfirmations) operation. */
+/** The weight. */
 export interface Weight {
   /** The unit of measurement. */
   unitOfMeasure: "KG" | "LB";
@@ -406,8 +406,8 @@ export interface Container {
   containerSequenceNumber?: number;
   /** Physical dimensional measurements of a container. */
   dimensions?: Dimensions;
-  /** The weight. This object is mandatory when using the [`submitShipmentConfirmations`](https://developer-docs.amazon.com/sp-api/docs/vendor-direct-fulfillment-shipping-api-v1-reference#submitshipmentconfirmations) operation. */
-  weight?: Weight;
+  /** The weight. */
+  weight: Weight;
   /** A list of packed items. */
   packedItems: PackedItem[];
 }

@@ -19,7 +19,7 @@ export class Definitions<SecurityDataType = unknown> {
   searchDefinitionsProductTypes = (
     query: {
       /**
-       * A comma-delimited list of keywords to search product types by.
+       * A comma-delimited list of keywords to search product types. **Note:** Cannot be used with `itemName`.
        * @example "LUGGAGE"
        */
       keywords?: string[];
@@ -28,6 +28,21 @@ export class Definitions<SecurityDataType = unknown> {
        * @example "ATVPDKIKX0DER"
        */
       marketplaceIds: string[];
+      /**
+       * The title of the ASIN to get the product type recommendation. **Note:** Cannot be used with `keywords`.
+       * @example "Running shoes"
+       */
+      itemName?: string;
+      /**
+       * The locale for the display names in the response. Defaults to the primary locale of the marketplace.
+       * @example "en_US"
+       */
+      locale?: string;
+      /**
+       * The locale used for the `keywords` and `itemName` parameters. Defaults to the primary locale of the marketplace.
+       * @example "en_US"
+       */
+      searchLocale?: string;
     },
     params: RequestParams = {}
   ) =>

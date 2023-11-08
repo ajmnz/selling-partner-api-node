@@ -54,6 +54,8 @@ export interface ProductTypeDefinition {
   marketplaceIds: string[];
   /** The name of the Amazon product type that this product type definition applies to. */
   productType: string;
+  /** Human-readable and localized description of the Amazon product type. */
+  displayName: string;
   /** The version details for the Amazon product type. */
   productTypeVersion: ProductTypeVersion;
 }
@@ -82,6 +84,8 @@ export interface ProductTypeVersion {
 export interface ProductType {
   /** The name of the Amazon product type. */
   name: string;
+  /** The human-readable and localized description of the Amazon product type. */
+  displayName: string;
   /** The Amazon marketplace identifiers for which the product type definition is available. */
   marketplaceIds: string[];
 }
@@ -89,4 +93,6 @@ export interface ProductType {
 /** A list of Amazon product types with definitions available. */
 export interface ProductTypeList {
   productTypes: ProductType[];
+  /** The version details for the Amazon product type. */
+  productTypeVersion: ProductTypeVersion;
 }
