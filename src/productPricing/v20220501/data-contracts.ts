@@ -9,7 +9,7 @@
  * ---------------------------------------------------------------
  */
 
-/** The request body for the getFeaturedOfferExpectedPriceBatch operation. */
+/** The request body for the `getFeaturedOfferExpectedPriceBatch` operation. */
 export interface GetFeaturedOfferExpectedPriceBatchRequest {
   /** A batched list of featured offer expected price requests. */
   requests?: FeaturedOfferExpectedPriceRequestList;
@@ -33,7 +33,7 @@ export interface FeaturedOfferExpectedPriceRequestParams {
   sku: Sku;
 }
 
-/** The response schema for the getFeaturedOfferExpectedPriceBatch operation. */
+/** The response schema for the `getFeaturedOfferExpectedPriceBatch` operation. */
 export interface GetFeaturedOfferExpectedPriceBatchResponse {
   /** A batched list of featured offer expected price responses. */
   responses?: FeaturedOfferExpectedPriceResponseList;
@@ -51,6 +51,129 @@ export type FeaturedOfferExpectedPriceResponse = BatchResponse & {
   /** The featured offer expected price response data for a requested SKU. */
   body?: FeaturedOfferExpectedPriceResponseBody;
 };
+
+/** The `competitiveSummary` batch request data. */
+export interface CompetitiveSummaryBatchRequest {
+  /** A batched list of `competitiveSummary` requests. */
+  requests: CompetitiveSummaryRequestList;
+}
+
+/**
+ * A batched list of `competitiveSummary` requests.
+ * @maxItems 20
+ * @minItems 1
+ */
+export type CompetitiveSummaryRequestList = CompetitiveSummaryRequest[];
+
+/** An individual `competitiveSummary` request for an ASIN and `marketplaceId`. */
+export interface CompetitiveSummaryRequest {
+  /** The Amazon identifier for the item. */
+  asin: Asin;
+  /** A marketplace identifier. */
+  marketplaceId: MarketplaceId;
+  /**
+   * The list of requested competitive pricing data for the product.
+   * @minItems 1
+   */
+  includedData: CompetitiveSummaryIncludedData[];
+  /** HTTP method type */
+  method: HttpMethod;
+  /** The URI associated with the individual APIs being called as part of the batch request. For `getCompetitiveSummary`, this should be `/products/pricing/2022-05-01/items/competitiveSummary`. */
+  uri: HttpUri;
+}
+
+/** The supported types of data in the `getCompetitiveSummary` API. */
+export enum CompetitiveSummaryIncludedData {
+  FeaturedBuyingOptions = "featuredBuyingOptions",
+}
+
+/** The response schema of the `competitiveSummaryBatch` operation. */
+export interface CompetitiveSummaryBatchResponse {
+  /** The response list of the `competitiveSummaryBatch` operation. */
+  responses: CompetitiveSummaryResponseList;
+}
+
+/**
+ * The response list of the `competitiveSummaryBatch` operation.
+ * @maxItems 20
+ * @minItems 1
+ */
+export type CompetitiveSummaryResponseList = CompetitiveSummaryResponse[];
+
+/** The response for the individual `competitiveSummary` request in the batch operation. */
+export interface CompetitiveSummaryResponse {
+  /** The HTTP status line associated with the response. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html). */
+  status: HttpStatusLine;
+  /** The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`. */
+  body: CompetitiveSummaryResponseBody;
+}
+
+/** The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`. */
+export interface CompetitiveSummaryResponseBody {
+  /** The Amazon identifier for the item. */
+  asin: Asin;
+  /** A marketplace identifier. */
+  marketplaceId: MarketplaceId;
+  /** A list of featured buying options for the given ASIN `marketplaceId` combination. */
+  featuredBuyingOptions?: FeaturedBuyingOption[];
+  /** A list of errors */
+  errors?: Errors;
+}
+
+/** Describes a featured buying option which includes a list of segmented featured offers for a particular item condition. */
+export interface FeaturedBuyingOption {
+  /** The buying option type of the featured offer. This field represents the buying options that a customer sees on the detail page. For example, B2B, Fresh, and Subscribe n Save. Currently supports `NEW` */
+  buyingOptionType: "New";
+  /**
+   * A list of segmented featured offers for the current buying option type. A segment can be considered as a group of regional contexts that all have the same featured offer. A regional context is a combination of factors such as customer type, region or postal code and buying option.
+   * @minItems 1
+   */
+  segmentedFeaturedOffers: SegmentedFeaturedOffer[];
+}
+
+/** A product offer with segment information indicating where it's featured. */
+export type SegmentedFeaturedOffer = Offer & {
+  /** The list of segment information in which the offer is featured. */
+  featuredOfferSegments: FeaturedOfferSegment[];
+};
+
+/** The offer data of a product. */
+export interface Offer {
+  /** The seller identifier for the offer. */
+  sellerId: string;
+  /** Item Condition. */
+  condition: Condition;
+  /** The fulfillment type for the offer. Possible values are AFN (Amazon Fulfillment Network) and MFN (Merchant Fulfillment Network). */
+  fulfillmentType: FulfillmentType;
+  /** Offer buying price. Does not include shipping, points, or applicable promotions. */
+  listingPrice: MoneyType;
+  /** A list of shipping options associated with this offer */
+  shippingOptions?: ShippingOption[];
+  /** The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP). */
+  points?: Points;
+}
+
+/** The shipping option available for the offer. */
+export interface ShippingOption {
+  /** The type of the shipping option. */
+  shippingOptionType: "DEFAULT";
+  /** Shipping price for the offer. */
+  price: MoneyType;
+}
+
+/** Describes the segment in which the offer is featured. */
+export interface FeaturedOfferSegment {
+  /** The customer membership type that make up this segment */
+  customerMembership: "PRIME" | "NON_PRIME";
+  /** The details about the segment. */
+  segmentDetails: SegmentDetails;
+}
+
+/** The details about the segment. */
+export interface SegmentDetails {
+  /** Glance view weight percentage for this segment. The glance views for this segment as a percentage of total glance views across all segments on the ASIN. A higher percentage indicates more Amazon customers see this offer as the Featured Offer. */
+  glanceViewWeightPercentage?: number;
+}
 
 /** A list of error responses returned when a request is unsuccessful. */
 export interface Errors {
@@ -75,11 +198,11 @@ export type FeaturedOfferExpectedPriceResultList = FeaturedOfferExpectedPriceRes
 export interface FeaturedOfferExpectedPriceResult {
   /** The item price at or below which the target offer may be featured. */
   featuredOfferExpectedPrice?: FeaturedOfferExpectedPrice;
-  /** The status of the featured offer expected price computation. Possible values include VALID_FOEP, NO_COMPETING_OFFER, OFFER_NOT_ELIGIBLE, OFFER_NOT_FOUND. */
+  /** The status of the featured offer expected price computation. Possible values include `VALID_FOEP`, `NO_COMPETING_OFFER`, `OFFER_NOT_ELIGIBLE`, `OFFER_NOT_FOUND`, `ASIN_NOT_ELIGIBLE`. Additional values may be added in the future. */
   resultStatus: string;
-  /** The offer that will likely be the featured offer if the target offer is priced above its featured offer expected price. If the target offer is currently the featured offer, this property will be different than currentFeaturedOffer. */
+  /** The offer that will likely be the featured offer if the target offer is priced above its featured offer expected price. If the target offer is currently the featured offer, this property will be different than `currentFeaturedOffer`. */
   competingFeaturedOffer?: FeaturedOffer;
-  /** The offer that is currently the featured offer. If the target offer is not currently featured, this property will be equal to competingFeaturedOffer. */
+  /** The offer that is currently the featured offer. If the target offer is not currently featured, then this property will be equal to `competingFeaturedOffer`. */
   currentFeaturedOffer?: FeaturedOffer;
 }
 
@@ -118,6 +241,13 @@ export interface HttpStatusLine {
 /** Additional HTTP body information associated with an individual request within a batch. */
 export type HttpBody = any;
 
+/**
+ * The URI associated with the individual APIs being called as part of the batch request.
+ * @minLength 6
+ * @maxLength 512
+ */
+export type HttpUri = string;
+
 /** The HTTP method associated with an individual request within a batch. */
 export enum HttpMethod {
   GET = "GET",
@@ -129,7 +259,7 @@ export enum HttpMethod {
 
 /** The common properties for individual requests within a batch. */
 export interface BatchRequest {
-  /** The URI associated with an individual request within a batch. For FeaturedOfferExpectedPrice, this should be '/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice'. */
+  /** The URI associated with an individual request within a batch. For `FeaturedOfferExpectedPrice`, this should be `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`. */
   uri: string;
   /** The HTTP method associated with an individual request within a batch. */
   method: HttpMethod;
