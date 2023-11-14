@@ -226,7 +226,7 @@ export interface ChargeRefundEvent {
    */
   ReasonCodeDescription?: string;
   /** The amount of the charge refund credit. */
-  ChargeRefundTransactions?: ChargeRefundTransaction;
+  ChargeRefundTransactions?: ChargeRefundTransactions;
 }
 
 /** A list of charge refund events. */
@@ -239,6 +239,9 @@ export interface ChargeRefundTransaction {
   /** The type of charge. */
   ChargeType?: string;
 }
+
+/** A list of `ChargeRefund` transactions. */
+export type ChargeRefundTransactions = ChargeRefundTransaction[];
 
 /** An event related to coupon payments. */
 export interface CouponPaymentEvent {
@@ -412,8 +415,11 @@ export interface DirectPayment {
 /** A list of direct payment information. */
 export type DirectPaymentList = DirectPayment[];
 
+/** A list of `FailedAdhocDisbursementEvent`s. */
+export type FailedAdhocDisbursementEventList = FailedAdhocDisbursementEvent[];
+
 /** Failed ad hoc disbursement event list. */
-export interface FailedAdhocDisbursementEventList {
+export interface FailedAdhocDisbursementEvent {
   /**
    * The type of fund transfer.
    *
@@ -567,9 +573,9 @@ export interface FinancialEvents {
   TaxWithholdingEventList?: TaxWithholdingEventList;
   /** A list of charge refund events. */
   ChargeRefundEventList?: ChargeRefundEventList;
-  /** Failed ad hoc disbursement event list. */
+  /** A list of `FailedAdhocDisbursementEvent`s. */
   FailedAdhocDisbursementEventList?: FailedAdhocDisbursementEventList;
-  /** An event related to a value added service charge. */
+  /** A list of `ValueAddedServiceCharge` events. */
   ValueAddedServiceChargeEventList?: ValueAddedServiceChargeEventList;
   /** A list of `CapacityReservationBillingEvent` events. */
   CapacityReservationBillingEventList?: CapacityReservationBillingEventList;
@@ -1273,8 +1279,11 @@ export interface TrialShipmentEvent {
 /** A list of information about trial shipment financial events. */
 export type TrialShipmentEventList = TrialShipmentEvent[];
 
+/** A list of `ValueAddedServiceCharge` events. */
+export type ValueAddedServiceChargeEventList = ValueAddedServiceChargeEvent[];
+
 /** An event related to a value added service charge. */
-export interface ValueAddedServiceChargeEventList {
+export interface ValueAddedServiceChargeEvent {
   /**
    * Indicates the type of transaction.
    *
