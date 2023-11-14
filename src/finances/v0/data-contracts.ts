@@ -226,7 +226,7 @@ export interface ChargeRefundEvent {
    */
   ReasonCodeDescription?: string;
   /** The amount of the charge refund credit. */
-  ChargeRefundTransactions?: ChargeRefundTransactions;
+  ChargeRefundTransactions?: ChargeRefundTransaction;
 }
 
 /** A list of charge refund events. */
@@ -239,9 +239,6 @@ export interface ChargeRefundTransaction {
   /** The type of charge. */
   ChargeType?: string;
 }
-
-/** A list of ChargeRefund Transactions */
-export type ChargeRefundTransactions = ChargeRefundTransaction[];
 
 /** An event related to coupon payments. */
 export interface CouponPaymentEvent {
@@ -415,11 +412,8 @@ export interface DirectPayment {
 /** A list of direct payment information. */
 export type DirectPaymentList = DirectPayment[];
 
-/** A list of FailedAdhocDisbursementEvents. */
-export type FailedAdhocDisbursementEventList = FailedAdhocDisbursementEvent[];
-
 /** Failed ad hoc disbursement event list. */
-export interface FailedAdhocDisbursementEvent {
+export interface FailedAdhocDisbursementEventList {
   /**
    * The type of fund transfer.
    *
@@ -511,50 +505,6 @@ export interface FinancialEventGroup {
 /** A list of financial event group information. */
 export type FinancialEventGroupList = FinancialEventGroup[];
 
-/** Contains transactions within a given time period. */
-export type Transactions = Transaction[];
-
-/** Contains all information related to the transaction. */
-export interface Transaction {
-  /** Metadata describing the seller. */
-  SellingPartnerMetadata?: SellingPartnerMetadata;
-  /** Related business identifiers of the transaction. */
-  RelatedIdentifiers?: RelatedIdentifiers;
-  /**
-   * The type of transaction.
-   *
-   * Possible values:
-   *
-   * * Shipment
-   */
-  TransactionType?: string;
-  /** The date and time when the transaction was posted. */
-  PostedDate?: Date;
-  /** Total amount of transaction. */
-  TotalAmount?: Currency;
-}
-
-/** Related business identifier of the transaction. */
-export interface RelatedIdentifier {
-  /** Enumerated set of related business identifier names. */
-  RelatedIdentifierName?: "ORDER_ID";
-  /** Corresponding value of RelatedIdentifierName */
-  RelatedIdentifierValue?: string;
-}
-
-/** Related business identifiers of the transaction. */
-export type RelatedIdentifiers = RelatedIdentifier[];
-
-/** Metadata describing the seller. */
-export interface SellingPartnerMetadata {
-  /** Unique seller identifier. */
-  SellingPartnerId?: string;
-  /** Account type of transaction. */
-  AccountType?: string;
-  /** Marketplace identifier of transaction. */
-  MarketplaceId?: string;
-}
-
 /** Contains all information related to a financial event. */
 export interface FinancialEvents {
   /** A list of shipment events. */
@@ -617,9 +567,9 @@ export interface FinancialEvents {
   TaxWithholdingEventList?: TaxWithholdingEventList;
   /** A list of charge refund events. */
   ChargeRefundEventList?: ChargeRefundEventList;
-  /** A list of FailedAdhocDisbursementEvents. */
+  /** Failed ad hoc disbursement event list. */
   FailedAdhocDisbursementEventList?: FailedAdhocDisbursementEventList;
-  /** A list of ValueAddedServiceCharge events. */
+  /** An event related to a value added service charge. */
   ValueAddedServiceChargeEventList?: ValueAddedServiceChargeEventList;
   /** A list of `CapacityReservationBillingEvent` events. */
   CapacityReservationBillingEventList?: CapacityReservationBillingEventList;
@@ -653,22 +603,6 @@ export interface ListFinancialEventGroupsResponse {
   /** The payload for the listFinancialEventGroups operation. */
   payload?: ListFinancialEventGroupsPayload;
   /** One or more unexpected errors occurred during the listFinancialEventGroups operation. */
-  errors?: ErrorList;
-}
-
-/** The payload for the listTransactions operation. */
-export interface ListTransactionsPayload {
-  /** When present and not empty, pass this string token in the next request to return the next response page. */
-  NextToken?: string;
-  /** Contains transactions within a given time period. */
-  Transactions?: Transactions;
-}
-
-/** The response schema for the listTransactions operation. */
-export interface ListTransactionsResponse {
-  /** The payload for the listTransactions operation. */
-  payload?: ListTransactionsPayload;
-  /** One or more unexpected errors occurred during the listTransactions operation. */
   errors?: ErrorList;
 }
 
@@ -1339,11 +1273,8 @@ export interface TrialShipmentEvent {
 /** A list of information about trial shipment financial events. */
 export type TrialShipmentEventList = TrialShipmentEvent[];
 
-/** A list of ValueAddedServiceCharge events. */
-export type ValueAddedServiceChargeEventList = ValueAddedServiceChargeEvent[];
-
 /** An event related to a value added service charge. */
-export interface ValueAddedServiceChargeEvent {
+export interface ValueAddedServiceChargeEventList {
   /**
    * Indicates the type of transaction.
    *
