@@ -9,6 +9,7 @@ import { Authorization as authorizationAuthorization } from "./authorization/Aut
 import { Catalog as catalogItemsV0Catalog } from "./catalogItems/v0/Catalog";
 import { Catalog as catalogItemsV20201201Catalog } from "./catalogItems/v20201201/Catalog";
 import { Catalog as catalogItemsV20220401Catalog } from "./catalogItems/v20220401/Catalog";
+import { DataKiosk as dataKioskV20231115DataKiosk } from "./dataKiosk/v20231115/DataKiosk";
 import { EasyShip as easyShipV20220323EasyShip } from "./easyShip/v20220323/EasyShip";
 import { Fba as fbaInboundFba } from "./fbaInbound/Fba";
 import { Fba as fbaInventoryFba } from "./fbaInventory/Fba";
@@ -65,6 +66,7 @@ export class SellingPartner extends SellingPartnerCore {
     v20201201: catalogItemsV20201201Catalog;
     v20220401: catalogItemsV20220401Catalog;
   };
+  public dataKiosk: dataKioskV20231115DataKiosk;
   public easyShip: easyShipV20220323EasyShip;
   public fbaInbound: fbaInboundFba;
   public fbaInventory: fbaInventoryFba;
@@ -134,6 +136,7 @@ export class SellingPartner extends SellingPartnerCore {
       v20201201: new catalogItemsV20201201Catalog(this.httpClient),
       v20220401: new catalogItemsV20220401Catalog(this.httpClient),
     };
+    this.dataKiosk = new dataKioskV20231115DataKiosk(this.httpClient);
     this.easyShip = new easyShipV20220323EasyShip(this.httpClient);
     this.fbaInbound = new fbaInboundFba(this.httpClient);
     this.fbaInventory = new fbaInventoryFba(this.httpClient);
