@@ -93,6 +93,6 @@ export interface ProductType {
 /** A list of Amazon product types with definitions available. */
 export interface ProductTypeList {
   productTypes: ProductType[];
-  /** The version details for the Amazon product type. */
-  productTypeVersion: ProductTypeVersion;
+  /** Amazon product type version identifier. */
+  productTypeVersion: string;
 }
