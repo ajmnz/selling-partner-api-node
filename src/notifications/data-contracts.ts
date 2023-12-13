@@ -10,33 +10,33 @@
  */
 
 /**
- * Additional information passed to the subscription to control the processing of notifications. For example, you can use an `eventFilter` to customize your subscription to send notifications for only the specified marketplaceId's, or select the aggregation time period at which to send notifications (e.g. limit to one notification every five minutes for high frequency notifications). The specific features available vary depending on the notificationType.
+ * Additional information passed to the subscription to control the processing of notifications. For example, you can use an `eventFilter` to customize your subscription to send notifications for only the specified `marketplaceId`s, or select the aggregation time period at which to send notifications (for example: limit to one notification every five minutes for high frequency notifications). The specific features available vary depending on the `notificationType`.
  *
- * This feature is currently only supported by the `ANY_OFFER_CHANGED` and `ORDER_CHANGE` notificationTypes.
+ * This feature is currently only supported by the `ANY_OFFER_CHANGED` and `ORDER_CHANGE` `notificationType`s.
  */
 export interface ProcessingDirective {
-  /** A notificationType specific filter. */
+  /** A `notificationType` specific filter. */
   eventFilter?: EventFilter;
 }
 
-/** A notificationType specific filter. This object contains all of the currently available filters and properties that you can use to define a notificationType specific filter. */
+/** A `notificationType` specific filter. This object contains all of the currently available filters and properties that you can use to define a `notificationType` specific filter. */
 export type EventFilter = AggregationFilter &
   MarketplaceFilter &
   OrderChangeTypeFilter & {
-    /** An eventFilterType value that is supported by the specific notificationType. This is used by the subscription service to determine the type of event filter. Refer to the section of the [Notifications Use Case Guide](doc:notifications-api-v1-use-case-guide) that describes the specific notificationType to determine if an eventFilterType is supported. */
+    /** An `eventFilterType` value that is supported by the specific `notificationType`. This is used by the subscription service to determine the type of event filter. Refer to the section of the [Notifications Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide) that describes the specific `notificationType` to determine if an `eventFilterType` is supported. */
     eventFilterType: "ANY_OFFER_CHANGED" | "ORDER_CHANGE";
   };
 
-/** Use this event filter to customize your subscription to send notifications for only the specified marketplaceId's. */
+/** An event filter to customize your subscription to send notifications for only the specified `marketplaceId`s. */
 export interface MarketplaceFilter {
-  /** A list of marketplace identifiers to subscribe to (e.g. ATVPDKIKX0DER). To receive notifications in every marketplace, do not provide this list. */
+  /** A list of marketplace identifiers to subscribe to (for example: ATVPDKIKX0DER). To receive notifications in every marketplace, do not provide this list. */
   marketplaceIds?: MarketplaceIds;
 }
 
-/** A list of marketplace identifiers to subscribe to (e.g. ATVPDKIKX0DER). To receive notifications in every marketplace, do not provide this list. */
+/** A list of marketplace identifiers to subscribe to (for example: ATVPDKIKX0DER). To receive notifications in every marketplace, do not provide this list. */
 export type MarketplaceIds = string[];
 
-/** Use this filter to select the aggregation time period at which to send notifications (e.g. limit to one notification every five minutes for high frequency notifications). */
+/** A filter used to select the aggregation time period at which to send notifications (for example: limit to one notification every five minutes for high frequency notifications). */
 export interface AggregationFilter {
   /** A container that holds all of the necessary properties to configure the aggregation of notifications. */
   aggregationSettings?: AggregationSettings;
@@ -54,13 +54,13 @@ export enum AggregationTimePeriod {
   TenMinutes = "TenMinutes",
 }
 
-/** Use this event filter to customize your subscription to send notifications for only the specified orderChangeType. */
+/** An event filter to customize your subscription to send notifications for only the specified `orderChangeType`. */
 export interface OrderChangeTypeFilter {
-  /** A list of order change types to subscribe to (e.g. BuyerRequestedChange). To receive notifications of all change types, do not provide this list. */
+  /** A list of order change types to subscribe to (for example: `BuyerRequestedChange`). To receive notifications of all change types, do not provide this list. */
   orderChangeTypes?: OrderChangeTypes;
 }
 
-/** A list of order change types to subscribe to (e.g. BuyerRequestedChange). To receive notifications of all change types, do not provide this list. */
+/** A list of order change types to subscribe to (for example: `BuyerRequestedChange`). To receive notifications of all change types, do not provide this list. */
 export type OrderChangeTypes = OrderChangeTypeEnum[];
 
 /** The supported order change type of ORDER_CHANGE notification. */
@@ -69,7 +69,7 @@ export enum OrderChangeTypeEnum {
   BuyerRequestedChange = "BuyerRequestedChange",
 }
 
-/** Represents a subscription to receive notifications. */
+/** Information about the subscription. */
 export interface Subscription {
   /** The subscription identifier generated when the subscription is created. */
   subscriptionId: string;
@@ -78,61 +78,61 @@ export interface Subscription {
   /** The identifier for the destination where notifications will be delivered. */
   destinationId: string;
   /**
-   * Additional information passed to the subscription to control the processing of notifications. For example, you can use an `eventFilter` to customize your subscription to send notifications for only the specified marketplaceId's, or select the aggregation time period at which to send notifications (e.g. limit to one notification every five minutes for high frequency notifications). The specific features available vary depending on the notificationType.
+   * Additional information passed to the subscription to control the processing of notifications. For example, you can use an `eventFilter` to customize your subscription to send notifications for only the specified `marketplaceId`s, or select the aggregation time period at which to send notifications (for example: limit to one notification every five minutes for high frequency notifications). The specific features available vary depending on the `notificationType`.
    *
-   * This feature is currently only supported by the `ANY_OFFER_CHANGED` and `ORDER_CHANGE` notificationTypes.
+   * This feature is currently only supported by the `ANY_OFFER_CHANGED` and `ORDER_CHANGE` `notificationType`s.
    */
   processingDirective?: ProcessingDirective;
 }
 
-/** The response schema for the createSubscription operation. */
+/** The response schema for the `createSubscription` operation. */
 export interface CreateSubscriptionResponse {
-  /** The payload for the createSubscription operation. */
+  /** The payload for the `createSubscription` operation. */
   payload?: Subscription;
-  /** One or more unexpected errors occurred during the createSubscription operation. */
+  /** One or more unexpected errors occurred during the `createSubscription` operation. */
   errors?: ErrorList;
 }
 
-/** The request schema for the createSubscription operation. */
+/** The request schema for the `createSubscription` operation. */
 export interface CreateSubscriptionRequest {
   /** The version of the payload object to be used in the notification. */
-  payloadVersion?: string;
+  payloadVersion: string;
   /** The identifier for the destination where notifications will be delivered. */
-  destinationId?: string;
+  destinationId: string;
   /**
-   * Additional information passed to the subscription to control the processing of notifications. For example, you can use an `eventFilter` to customize your subscription to send notifications for only the specified marketplaceId's, or select the aggregation time period at which to send notifications (e.g. limit to one notification every five minutes for high frequency notifications). The specific features available vary depending on the notificationType.
+   * Additional information passed to the subscription to control the processing of notifications. For example, you can use an `eventFilter` to customize your subscription to send notifications for only the specified `marketplaceId`s, or select the aggregation time period at which to send notifications (for example: limit to one notification every five minutes for high frequency notifications). The specific features available vary depending on the `notificationType`.
    *
-   * This feature is currently only supported by the `ANY_OFFER_CHANGED` and `ORDER_CHANGE` notificationTypes.
+   * This feature is currently only supported by the `ANY_OFFER_CHANGED` and `ORDER_CHANGE` `notificationType`s.
    */
   processingDirective?: ProcessingDirective;
 }
 
-/** The response schema for the getSubscriptionById operation. */
+/** The response schema for the `getSubscriptionById` operation. */
 export interface GetSubscriptionByIdResponse {
-  /** The payload for the getSubscriptionById operation. */
+  /** The payload for the `getSubscriptionById` operation. */
   payload?: Subscription;
-  /** An unexpected condition occurred during the getSubscriptionById operation. */
+  /** An unexpected condition occurred during the `getSubscriptionById` operation. */
   errors?: ErrorList;
 }
 
-/** The response schema for the getSubscription operation. */
+/** The response schema for the `getSubscription` operation. */
 export interface GetSubscriptionResponse {
-  /** The payload for the getSubscription operation. */
+  /** The payload for the `getSubscription` operation. */
   payload?: Subscription;
-  /** One or more unexpected errors occurred during the getSubscription operation. */
+  /** One or more unexpected errors occurred during the `getSubscription` operation. */
   errors?: ErrorList;
 }
 
-/** The response schema for the deleteSubscriptionById operation. */
+/** The response schema for the `deleteSubscriptionById` operation. */
 export interface DeleteSubscriptionByIdResponse {
-  /** An unexpected condition occurred during the deleteSubscriptionById operation. */
+  /** An unexpected condition occurred during the `deleteSubscriptionById` operation. */
   errors?: ErrorList;
 }
 
 /** A list of destinations. */
 export type DestinationList = Destination[];
 
-/** Represents a destination created when you call the createDestination operation. */
+/** Information about the destination created when you call the `createDestination` operation. */
 export interface Destination {
   /**
    * The developer-defined name for this destination.
@@ -179,20 +179,20 @@ export interface EventBridgeResourceSpecification {
   accountId: string;
 }
 
-/** Represents an Amazon EventBridge destination. */
+/** The Amazon EventBridge destination. */
 export interface EventBridgeResource {
   /**
    * The name of the partner event source associated with the destination.
    * @maxLength 256
    */
   name: string;
-  /** The AWS region in which you receive the notifications. For AWS regions that are supported in Amazon EventBridge, see https://docs.aws.amazon.com/general/latest/gr/ev.html. */
+  /** The AWS region in which you receive the notifications. For AWS regions that are supported in Amazon EventBridge, refer to [Amazon EventBridge endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ev.html). */
   region: string;
   /** The identifier for the AWS account that is responsible for charges related to receiving notifications. */
   accountId: string;
 }
 
-/** The request schema for the createDestination operation. */
+/** The request schema for the `createDestination` operation. */
 export interface CreateDestinationRequest {
   /** The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination. */
   resourceSpecification: DestinationResourceSpecification;
@@ -202,42 +202,42 @@ export interface CreateDestinationRequest {
 
 /** The response schema for the createDestination operation. */
 export interface CreateDestinationResponse {
-  /** The payload for the createDestination operation. */
+  /** The payload for the `createDestination` operation. */
   payload?: Destination;
-  /** One or more unexpected errors occurred during the createDestination operation. */
+  /** One or more unexpected errors occurred during the `createDestination` operation. */
   errors?: ErrorList;
 }
 
-/** The response schema for the getDestination operation. */
+/** The response schema for the `getDestination` operation. */
 export interface GetDestinationResponse {
-  /** The payload for the getDestination operation. */
+  /** The payload for the `getDestination` operation. */
   payload?: Destination;
-  /** One or more unexpected errors occurred during the getDestination operation. */
+  /** One or more unexpected errors occurred during the `getDestination` operation. */
   errors?: ErrorList;
 }
 
-/** The response schema for the getDestinations operation. */
+/** The response schema for the `getDestinations` operation. */
 export interface GetDestinationsResponse {
-  /** The payload for the getDestinations operation. */
+  /** The payload for the `getDestinations` operation. */
   payload?: DestinationList;
-  /** One or more unexpected errors occurred during the getDestinations operation. */
+  /** One or more unexpected errors occurred during the `getDestinations` operation. */
   errors?: ErrorList;
 }
 
-/** The response schema for the deleteDestination operation. */
+/** The response schema for the `deleteDestination` operation. */
 export interface DeleteDestinationResponse {
-  /** One or more unexpected errors occurred during the deleteDestination operation. */
+  /** One or more unexpected errors occurred during the `deleteDestination` operation. */
   errors?: ErrorList;
 }
 
 /** A list of error responses returned when a request is unsuccessful. */
 export type ErrorList = Error[];
 
-/** Error response returned when the request is unsuccessful. */
+/** An error response returned when the request is unsuccessful. */
 export interface Error {
   /** An error code that identifies the type of error that occurred. */
   code: string;
-  /** A message that describes the error condition in a human-readable form. */
+  /** A message that describes the error condition. */
   message: string;
   /** Additional details that can help the caller understand or fix the issue. */
   details?: string;
