@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 /* eslint-disable wrap-regex */
 const fs = require("fs");
 const path = require("path");
@@ -66,6 +67,14 @@ function capitalize(str, lower = false) {
         ...models[cleanFilename],
         [version]: path.join(modelsPath, modelDir, modelFilename),
       };
+    }
+  }
+
+  for (const modelFilename in models) {
+    const model = models[modelFilename];
+    if (Object.keys(model).length > 1 && Object.keys(model).includes("null")) {
+      model.root = model.null;
+      delete model.null;
     }
   }
 
