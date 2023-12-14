@@ -5,6 +5,7 @@ import type { SellingPartnerOptions } from "./types";
 
 // Model imports
 import { Aplus as aplusContentV20201101Aplus } from "./aplusContent/v20201101/Aplus";
+import { Applications as applicationV20231130Applications } from "./application/v20231130/Applications";
 import { Authorization as authorizationAuthorization } from "./authorization/Authorization";
 import { Catalog as catalogItemsV0Catalog } from "./catalogItems/v0/Catalog";
 import { Catalog as catalogItemsV20201201Catalog } from "./catalogItems/v20201201/Catalog";
@@ -37,7 +38,8 @@ import { Sales as salesSales } from "./sales/Sales";
 import { Sellers as sellersSellers } from "./sellers/Sellers";
 import { Service as servicesService } from "./services/Service";
 import { Fba as shipmentInvoicingV0Fba } from "./shipmentInvoicing/v0/Fba";
-import { Shipping as shippingShipping } from "./shipping/Shipping";
+import { Shipping as shippingV2Shipping } from "./shipping/v2/Shipping";
+import { Shipping as shippingROOTShipping } from "./shipping/root/Shipping";
 import { Solicitations as solicitationsSolicitations } from "./solicitations/Solicitations";
 import { SupplySources as supplySourcesV20200701SupplySources } from "./supplySources/v20200701/SupplySources";
 import { Tokens as tokensV20210301Tokens } from "./tokens/v20210301/Tokens";
@@ -60,6 +62,7 @@ import { Vendor as vendorTransactionStatusVendor } from "./vendorTransactionStat
 export class SellingPartner extends SellingPartnerCore {
   // Model declarations
   public aplusContent: aplusContentV20201101Aplus;
+  public application: applicationV20231130Applications;
   public authorization: authorizationAuthorization;
   public catalogItems: {
     v0: catalogItemsV0Catalog;
@@ -99,7 +102,7 @@ export class SellingPartner extends SellingPartnerCore {
   public sellers: sellersSellers;
   public services: servicesService;
   public shipmentInvoicing: shipmentInvoicingV0Fba;
-  public shipping: shippingShipping;
+  public shipping: { v2: shippingV2Shipping; root: shippingROOTShipping };
   public solicitations: solicitationsSolicitations;
   public supplySources: supplySourcesV20200701SupplySources;
   public tokens: tokensV20210301Tokens;
@@ -130,6 +133,7 @@ export class SellingPartner extends SellingPartnerCore {
 
     // Model instances
     this.aplusContent = new aplusContentV20201101Aplus(this.httpClient);
+    this.application = new applicationV20231130Applications(this.httpClient);
     this.authorization = new authorizationAuthorization(this.httpClient);
     this.catalogItems = {
       v0: new catalogItemsV0Catalog(this.httpClient),
@@ -176,7 +180,10 @@ export class SellingPartner extends SellingPartnerCore {
     this.sellers = new sellersSellers(this.httpClient);
     this.services = new servicesService(this.httpClient);
     this.shipmentInvoicing = new shipmentInvoicingV0Fba(this.httpClient);
-    this.shipping = new shippingShipping(this.httpClient);
+    this.shipping = {
+      v2: new shippingV2Shipping(this.httpClient),
+      root: new shippingROOTShipping(this.httpClient),
+    };
     this.solicitations = new solicitationsSolicitations(this.httpClient);
     this.supplySources = new supplySourcesV20200701SupplySources(this.httpClient);
     this.tokens = new tokensV20210301Tokens(this.httpClient);

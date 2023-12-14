@@ -30,15 +30,15 @@ export interface Item {
   sku: string;
   /** Summary details of a listings item. */
   summaries?: ItemSummaries;
-  /** JSON object containing structured listings item attribute data keyed by attribute name. */
+  /** A JSON object containing structured listings item attribute data keyed by attribute name. */
   attributes?: ItemAttributes;
-  /** Issues associated with the listings item. */
+  /** The issues associated with the listings item. */
   issues?: ItemIssues;
   /** Offer details for the listings item. */
   offers?: ItemOffers;
-  /** Fulfillment availability for the listings item. */
+  /** The fulfillment availability for the listings item. */
   fulfillmentAvailability?: FulfillmentAvailability[];
-  /** Vendor procurement information for the listings item. */
+  /** The vendor procurement information for the listings item. */
   procurement?: ItemProcurement[];
 }
 
@@ -70,38 +70,38 @@ export interface ItemSummaryByMarketplace {
     | "club_club";
   /** Statuses that apply to the listings item. */
   status: ("BUYABLE" | "DISCOVERABLE")[];
-  /** Fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to identify each unique item. */
+  /** The fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to identify each unique item. */
   fnSku?: string;
-  /** Name, or title, associated with an Amazon catalog item. */
+  /** The name or title associated with an Amazon catalog item. */
   itemName: string;
   /**
-   * Date the listings item was created, in ISO 8601 format.
+   * The date the listings item was created in ISO 8601 format.
    * @format date-time
    */
   createdDate: string;
   /**
-   * Date the listings item was last updated, in ISO 8601 format.
+   * The date the listings item was last updated in ISO 8601 format.
    * @format date-time
    */
   lastUpdatedDate: string;
-  /** Main image for the listings item. */
+  /** The main image for the listings item. */
   mainImage?: ItemImage;
 }
 
-/** Image for the listings item. */
+/** The image for the listings item. */
 export interface ItemImage {
-  /** Link, or URL, for the image. */
+  /** The link, or URL, to the image. */
   link: string;
-  /** Height of the image in pixels. */
+  /** The height of the image in pixels. */
   height: number;
-  /** Width of the image in pixels. */
+  /** The width of the image in pixels. */
   width: number;
 }
 
-/** JSON object containing structured listings item attribute data keyed by attribute name. */
+/** A JSON object containing structured listings item attribute data keyed by attribute name. */
 export type ItemAttributes = Record<string, any>;
 
-/** Issues associated with the listings item. */
+/** The issues associated with the listings item. */
 export type ItemIssues = Issue[];
 
 /** An issue with a listings item. */
@@ -112,8 +112,72 @@ export interface Issue {
   message: string;
   /** The severity of the issue. */
   severity: "ERROR" | "WARNING" | "INFO";
-  /** Names of the attributes associated with the issue, if applicable. */
+  /** The names of the attributes associated with the issue, if applicable. */
   attributeNames?: string[];
+  /**
+   * List of issue categories.
+   *
+   * Possible vales:
+   *
+   * * `INVALID_ATTRIBUTE` - Indicating an invalid attribute in the listing.
+   *
+   * * `MISSING_ATTRIBUTE` - Highlighting a missing attribute in the listing.
+   *
+   * * `INVALID_IMAGE` - Signifying an invalid image in the listing.
+   *
+   * * `MISSING_IMAGE` - Noting the absence of an image in the listing.
+   *
+   * * `INVALID_PRICE` - Pertaining to issues with the listing`s price-related attributes.
+   *
+   * * `MISSING_PRICE` - Pointing out the absence of a price attribute in the listing.
+   *
+   * * `DUPLICATE` - Identifying listings with potential duplicate problems, such as this ASIN potentially being a duplicate of another ASIN.
+   *
+   * * `QUALIFICATION_REQUIRED` - Indicating that the listing requires qualification-related approval.
+   * @example ["INVALID_ATTRIBUTE"]
+   */
+  categories: string[];
+  /** This field provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions. */
+  enforcements?: IssueEnforcements;
+}
+
+/** This field provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions. */
+export interface IssueEnforcements {
+  /** List of enforcement actions taken by Amazon that affect the publishing or status of a listing. */
+  actions: IssueEnforcementAction[];
+  /** The "exemption" field serves to convey the status of enforcement actions by Amazon. */
+  exemption: IssueExemption;
+}
+
+/** The enforcement action taken by Amazon that affect the publishing or status of a listing */
+export interface IssueEnforcementAction {
+  /**
+   * The enforcement action name.
+   *
+   * Possible values:
+   *
+   * * `LISTING_SUPPRESSED` - This enforcement takes down the current listing item`s buyability.
+   *
+   * * `ATTRIBUTE_SUPPRESSED` - An attribute`s value on the listing item is invalid, which causes it to be rejected by Amazon.
+   *
+   * * `CATALOG_ITEM_REMOVED` - This catalog item is inactive on Amazon, and all offers against it in the applicable marketplace are non-buyable.
+   *
+   * * `SEARCH_SUPPRESSED` - This value indicates that the catalog item is hidden from search results.
+   * @example "LISTING_SUPPRESSED"
+   */
+  action: string;
+}
+
+/** Conveying the status of the listed enforcement actions and, if applicable, provides information about the exemption's expiry date. */
+export interface IssueExemption {
+  /** This field indicates the current exemption status for the listed enforcement actions. It can take values such as `EXEMPT`, signifying permanent exemption, `EXEMPT_UNTIL_EXPIRY_DATE` indicating temporary exemption until a specified date, or `NOT_EXEMPT` signifying no exemptions, and enforcement actions were already applied. */
+  status: "EXEMPT" | "EXEMPT_UNTIL_EXPIRY_DATE" | "NOT_EXEMPT";
+  /**
+   * This field represents the timestamp, following the ISO 8601 format, which specifies the date when temporary exemptions, if applicable, will expire, and Amazon will begin enforcing the listed actions.
+   * @format date-time
+   * @example "2023-10-28T00:36:48.914Z"
+   */
+  expiryDate?: string;
 }
 
 /** Offer details for the listings item. */
@@ -121,25 +185,25 @@ export type ItemOffers = ItemOfferByMarketplace[];
 
 /** Offer details of a listings item for an Amazon marketplace. */
 export interface ItemOfferByMarketplace {
-  /** Amazon marketplace identifier. */
+  /** The Amazon marketplace identifier. */
   marketplaceId: string;
   /** Type of offer for the listings item. */
   offerType: "B2C" | "B2B";
-  /** Purchase price of the listings item */
+  /** The purchase price of the listings item */
   price: Money;
-  /** The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP). */
+  /** The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the `Points` element is only returned in Japan (JP). */
   points?: Points;
 }
 
-/** Vendor procurement information for the listings item. */
+/** The vendor procurement information for the listings item. */
 export interface ItemProcurement {
   /** The price (numeric value) that you want Amazon to pay you for this product. */
   costPrice: Money;
 }
 
-/** Fulfillment availability details for the listings item. */
+/** The fulfillment availability details for the listings item. */
 export interface FulfillmentAvailability {
-  /** Designates which fulfillment network will be used. */
+  /** The code of the fulfillment network that will be used. */
   fulfillmentChannelCode: string;
   /**
    * The quantity of the item you are making available for sale.
@@ -148,9 +212,9 @@ export interface FulfillmentAvailability {
   quantity?: number;
 }
 
-/** The currency type and the amount. */
+/** The currency type and amount. */
 export interface Money {
-  /** Three-digit currency code. In ISO 4217 format. */
+  /** Three-digit currency code in ISO 4217 format. */
   currencyCode: string;
   /** The currency amount. */
   amount: Decimal;
@@ -159,22 +223,22 @@ export interface Money {
 /** A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation. */
 export type Decimal = string;
 
-/** The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP). */
+/** The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the `Points` element is only returned in Japan (JP). */
 export interface Points {
   pointsNumber: number;
 }
 
 /** Individual JSON Patch operation for an HTTP PATCH request. */
 export interface PatchOperation {
-  /** Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>. */
+  /** Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. Refer to [JavaScript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902) for more information. */
   op: "add" | "replace" | "delete";
-  /** JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>. */
+  /** JSON Pointer path of the element to patch. Refer to [JavaScript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902) for more information. */
   path: string;
   /** JSON value to add, replace, or delete. */
   value?: Record<string, any>[];
 }
 
-/** The request body schema for the patchListingsItem operation. */
+/** The request body schema for the `patchListingsItem` operation. */
 export interface ListingsItemPatchRequest {
   /** The Amazon product type of the listings item. */
   productType: string;
@@ -185,13 +249,13 @@ export interface ListingsItemPatchRequest {
   patches: PatchOperation[];
 }
 
-/** The request body schema for the putListingsItem operation. */
+/** The request body schema for the `putListingsItem` operation. */
 export interface ListingsItemPutRequest {
   /** The Amazon product type of the listings item. */
   productType: string;
   /** The name of the requirements set for the provided data. */
   requirements?: "LISTING" | "LISTING_PRODUCT_ONLY" | "LISTING_OFFER_ONLY";
-  /** JSON object containing structured listings item attribute data keyed by attribute name. */
+  /** A JSON object containing structured listings item attribute data keyed by attribute name. */
   attributes: Record<string, any>;
 }
 

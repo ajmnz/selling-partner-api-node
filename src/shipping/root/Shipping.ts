@@ -14,8 +14,8 @@ import type {
   RetrieveShippingLabelRequest,
   RetrieveShippingLabelResponse,
 } from "./data-contracts";
-import type { HttpClient, RequestParams } from "../http-client";
-import { ContentType } from "../http-client";
+import type { HttpClient, RequestParams } from "../../http-client";
+import { ContentType } from "../../http-client";
 
 export class Shipping<SecurityDataType = unknown> {
   private http: HttpClient<SecurityDataType>;
