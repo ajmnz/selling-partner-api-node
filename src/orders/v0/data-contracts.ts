@@ -127,9 +127,9 @@ export interface OrdersList {
   Orders: OrderList;
   /** When present and not empty, pass this string token in the next request to return the next response page. */
   NextToken?: string;
-  /** A date used for selecting orders that were last updated before (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. All dates must be in ISO 8601 format. */
+  /** A date used for selecting orders that were last updated before (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. All dates must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format. */
   LastUpdatedBefore?: string;
-  /** A date used for selecting orders created before (or at) a specified time. Only orders placed before the specified time are returned. The date must be in ISO 8601 format. */
+  /** A date used for selecting orders created before (or at) a specified time. Only orders placed before the specified time are returned. The date must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format. */
   CreatedBefore?: string;
 }
 
@@ -204,20 +204,20 @@ export interface Order {
     | "BackOrder"
     | "SourcingOnDemandOrder";
   /**
-   * The start of the time period within which you have committed to ship the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.
+   * The start of the time period within which you have committed to ship the order. In <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. Returned only for seller-fulfilled orders.
    *
    * __Note__: EarliestShipDate might not be returned for orders placed before February 1, 2013.
    */
   EarliestShipDate?: string;
   /**
-   * The end of the time period within which you have committed to ship the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.
+   * The end of the time period within which you have committed to ship the order. In <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. Returned only for seller-fulfilled orders.
    *
    * __Note__: LatestShipDate might not be returned for orders placed before February 1, 2013.
    */
   LatestShipDate?: string;
-  /** The start of the time period within which you have committed to fulfill the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders. */
+  /** The start of the time period within which you have committed to fulfill the order. In <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. Returned only for seller-fulfilled orders. */
   EarliestDeliveryDate?: string;
-  /** The end of the time period within which you have committed to fulfill the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders that do not have a PendingAvailability, Pending, or Canceled status. */
+  /** The end of the time period within which you have committed to fulfill the order. In <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. Returned only for seller-fulfilled orders that do not have a PendingAvailability, Pending, or Canceled status. */
   LatestDeliveryDate?: string;
   /** When true, the order is an Amazon Business order. An Amazon Business order is an order where the buyer is a Verified Business Buyer. */
   IsBusinessOrder?: boolean;
@@ -305,7 +305,7 @@ export interface RegulatedOrderVerificationStatus {
   ValidRejectionReasons: RejectionReason[];
   /** The reason for rejecting the order's regulated information. Not present if the order isn't rejected. */
   RejectionReason?: RejectionReason;
-  /** The date the order was reviewed. In ISO 8601 date time format. */
+  /** The date the order was reviewed. In <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. */
   ReviewDate?: string;
   /** The identifier for the order's regulated information reviewer. */
   ExternalReviewerId?: string;
@@ -384,8 +384,22 @@ export interface Address {
   CountryCode?: string;
   /** The phone number. Not returned for Fulfillment by Amazon (FBA) orders. */
   Phone?: string;
+  /** The container for address extended fields. For example, street name or street number. Only available for Brazil shipping addresses as of now. */
+  ExtendedFields?: AddressExtendedFields;
   /** The address type of the shipping address. */
   AddressType?: "Residential" | "Commercial";
+}
+
+/** The container for address extended fields. For example, street name or street number. Only available for Brazil shipping addresses as of now. */
+export interface AddressExtendedFields {
+  /** The street name. */
+  StreetName?: string;
+  /** The house number/building number/property number in the street. */
+  StreetNumber?: string;
+  /** The floor number/unit number in the building/private house number. */
+  Complement?: string;
+  /** The neighborhood. It's smaller than a region and an integral part of an address. It is used in some countries like Brazil. */
+  Neighborhood?: string;
 }
 
 /** Contains all of the delivery instructions provided by the customer for the shipping address. */
@@ -418,7 +432,7 @@ export interface BusinessHours {
 
 /** Dates when the business is closed or open with a different time window. */
 export interface ExceptionDates {
-  /** Date when the business is closed, in ISO-8601 date format. */
+  /** Date when the business is closed, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date format. */
   ExceptionDate?: string;
   /** Boolean indicating if the business is closed or open on that date. */
   IsOpen?: boolean;
@@ -574,9 +588,9 @@ export interface OrderItem {
    * Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, Any, Other.
    */
   ConditionSubtypeId?: string;
-  /** The start date of the scheduled delivery window in the time zone of the order destination. In ISO 8601 date time format. */
+  /** The start date of the scheduled delivery window in the time zone of the order destination. In <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. */
   ScheduledDeliveryStartDate?: string;
-  /** The end date of the scheduled delivery window in the time zone of the order destination. In ISO 8601 date time format. */
+  /** The end date of the scheduled delivery window in the time zone of the order destination. In <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. */
   ScheduledDeliveryEndDate?: string;
   /**
    * Indicates that the selling price is a special price that is available only for Amazon Business orders. For more information about the Amazon Business Seller Program, see the [Amazon Business website](https://www.amazon.com/b2b/info/amazon-business).
@@ -831,7 +845,7 @@ export enum EasyShipShipmentStatus {
   Damaged = "Damaged",
 }
 
-/** The status of the electronic invoice. */
+/** The status of the electronic invoice. Only available for Easy Ship orders and orders in the BR marketplace. */
 export enum ElectronicInvoiceStatus {
   NotRequired = "NotRequired",
   NotFound = "NotFound",
@@ -869,7 +883,7 @@ export interface PackageDetail {
   /** The tracking number used to obtain tracking and delivery information. */
   trackingNumber: string;
   /**
-   * The shipping date for the package. Must be in ISO-8601 date/time format.
+   * The shipping date for the package. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date/time format.
    * @format date-time
    */
   shipDate: string;
