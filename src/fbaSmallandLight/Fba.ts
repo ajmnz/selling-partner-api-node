@@ -21,6 +21,7 @@ export class Fba<SecurityDataType = unknown> {
    * @tags smallAndLight
    * @name GetSmallAndLightEnrollmentBySellerSku
    * @request GET:/fba/smallAndLight/v1/enrollments/{sellerSKU}
+   * @deprecated
    */
   getSmallAndLightEnrollmentBySellerSku = (
     sellerSku: string,
@@ -47,6 +48,7 @@ export class Fba<SecurityDataType = unknown> {
    * @tags smallAndLight
    * @name PutSmallAndLightEnrollmentBySellerSku
    * @request PUT:/fba/smallAndLight/v1/enrollments/{sellerSKU}
+   * @deprecated
    */
   putSmallAndLightEnrollmentBySellerSku = (
     sellerSku: string,
@@ -73,6 +75,7 @@ export class Fba<SecurityDataType = unknown> {
    * @tags smallAndLight
    * @name DeleteSmallAndLightEnrollmentBySellerSku
    * @request DELETE:/fba/smallAndLight/v1/enrollments/{sellerSKU}
+   * @deprecated
    */
   deleteSmallAndLightEnrollmentBySellerSku = (
     sellerSku: string,
@@ -98,6 +101,7 @@ export class Fba<SecurityDataType = unknown> {
    * @tags smallAndLight
    * @name GetSmallAndLightEligibilityBySellerSku
    * @request GET:/fba/smallAndLight/v1/eligibilities/{sellerSKU}
+   * @deprecated
    */
   getSmallAndLightEligibilityBySellerSku = (
     sellerSku: string,
@@ -124,6 +128,7 @@ export class Fba<SecurityDataType = unknown> {
    * @tags smallAndLight
    * @name GetSmallAndLightFeePreview
    * @request POST:/fba/smallAndLight/v1/feePreviews
+   * @deprecated
    */
   getSmallAndLightFeePreview = (
     body: SmallAndLightFeePreviewRequest,

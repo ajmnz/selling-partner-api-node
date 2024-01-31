@@ -19,9 +19,9 @@ export type SellerSKU = string;
 export interface Error {
   /** An error code that identifies the type of error that occurred. */
   code: string;
-  /** A message that describes the error condition in a human-readable form. */
+  /** A message that describes the error condition. */
   message: string;
-  /** Additional information that can help the caller understand or fix the issue. */
+  /** Additional details that can help the caller understand or fix the issue. */
   details?: string;
 }
 
