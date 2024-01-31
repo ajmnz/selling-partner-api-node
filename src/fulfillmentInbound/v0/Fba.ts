@@ -34,6 +34,7 @@ export class Fba<SecurityDataType = unknown> {
    * @tags fbaInbound
    * @name GetInboundGuidance
    * @request GET:/fba/inbound/v0/itemsGuidance
+   * @deprecated
    */
   getInboundGuidance = (
     query: {

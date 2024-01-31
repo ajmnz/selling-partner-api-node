@@ -860,6 +860,7 @@ export enum PrepInstruction {
   CapSealing = "CapSealing",
   SetStickering = "SetStickering",
   BlankStickering = "BlankStickering",
+  ShipsInProductPackaging = "ShipsInProductPackaging",
   NoPrep = "NoPrep",
 }
 
