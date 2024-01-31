@@ -71,7 +71,7 @@ export class Listings<SecurityDataType = unknown> {
       issueLocale?: string;
       /**
        * A comma-delimited list of data sets to include in the response. Default: `summaries`.
-       * @default "summaries"
+       * @default ["summaries"]
        * @example "summaries"
        */
       includedData?: (
@@ -95,7 +95,7 @@ export class Listings<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported. **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding). **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 10 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+   * @description Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported. **Note:** This operation has a throttling rate of one request per second when `mode` is `VALIDATION_PREVIEW`. **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding). **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 10 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags listings
    * @name PatchListingsItem
@@ -110,6 +110,17 @@ export class Listings<SecurityDataType = unknown> {
        * @example "ATVPDKIKX0DER"
        */
       marketplaceIds: string[];
+      /**
+       * A comma-delimited list of data sets to include in the response. Default: `issues`.
+       * @default ["issues"]
+       * @example "issues"
+       */
+      includedData?: ("identifiers" | "issues")[];
+      /**
+       * The mode of operation for the request.
+       * @example "VALIDATION_PREVIEW"
+       */
+      mode?: "VALIDATION_PREVIEW";
       /**
        * A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when a localization is not available in the specified locale.
        * @example "en_US"
@@ -130,7 +141,7 @@ export class Listings<SecurityDataType = unknown> {
       ...params,
     });
   /**
-   * @description Creates or fully updates an existing listings item for a selling partner. **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding). **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 10 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+   * @description Creates or fully updates an existing listings item for a selling partner. **Note:** This operation has a throttling rate of one request per second when `mode` is `VALIDATION_PREVIEW`. **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding). **Usage Plan:** | Rate (requests per second) | Burst | | ---- | ---- | | 5 | 10 | The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
    *
    * @tags listings
    * @name PutListingsItem
@@ -145,6 +156,17 @@ export class Listings<SecurityDataType = unknown> {
        * @example "ATVPDKIKX0DER"
        */
       marketplaceIds: string[];
+      /**
+       * A comma-delimited list of data sets to include in the response. Default: `issues`.
+       * @default ["issues"]
+       * @example "issues"
+       */
+      includedData?: ("identifiers" | "issues")[];
+      /**
+       * The mode of operation for the request.
+       * @example "VALIDATION_PREVIEW"
+       */
+      mode?: "VALIDATION_PREVIEW";
       /**
        * A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when a localization is not available in the specified locale.
        * @example "en_US"

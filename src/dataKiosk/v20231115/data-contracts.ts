@@ -11,6 +11,7 @@
 
 /** A list of error responses returned when a request is unsuccessful. */
 export interface ErrorList {
+  /** Error response returned when the request is unsuccessful. */
   errors: Error[];
 }
 
@@ -18,7 +19,7 @@ export interface ErrorList {
 export interface Error {
   /** An error code that identifies the type of error that occurred. */
   code: string;
-  /** A message that describes the error condition in a human-readable form. */
+  /** A message that describes the error condition. */
   message: string;
   /** Additional details that can help the caller understand or fix the issue. */
   details?: string;

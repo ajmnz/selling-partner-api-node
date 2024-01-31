@@ -264,9 +264,22 @@ export interface ListingsItemSubmissionResponse {
   /** A selling partner provided identifier for an Amazon listing. */
   sku: string;
   /** The status of the listings item submission. */
-  status: "ACCEPTED" | "INVALID";
+  status: "ACCEPTED" | "INVALID" | "VALID";
   /** The unique identifier of the listings item submission. */
   submissionId: string;
   /** Listings item issues related to the listings item submission. */
   issues?: Issue[];
+  /** Identity attributes associated with the item in the Amazon catalog, such as the ASIN. */
+  identifiers?: ItemIdentifiers;
+}
+
+/** Identity attributes associated with the item in the Amazon catalog, such as the ASIN. */
+export type ItemIdentifiers = ItemIdentifiersByMarketplace[];
+
+/** Identity attributes associated with the item in the Amazon catalog for the indicated Amazon marketplace. */
+export interface ItemIdentifiersByMarketplace {
+  /** A marketplace identifier. Identifies the Amazon marketplace for the listings item. */
+  marketplaceId?: string;
+  /** Amazon Standard Identification Number (ASIN) of the listings item. */
+  asin?: string;
 }
