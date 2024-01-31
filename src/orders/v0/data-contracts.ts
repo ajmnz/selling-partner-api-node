@@ -384,8 +384,22 @@ export interface Address {
   CountryCode?: string;
   /** The phone number. Not returned for Fulfillment by Amazon (FBA) orders. */
   Phone?: string;
+  /** The container for address extended fields. For example, street name or street number. Only available for Brazil shipping addresses as of now. */
+  ExtendedFields?: AddressExtendedFields;
   /** The address type of the shipping address. */
   AddressType?: "Residential" | "Commercial";
+}
+
+/** The container for address extended fields. For example, street name or street number. Only available for Brazil shipping addresses as of now. */
+export interface AddressExtendedFields {
+  /** The street name. */
+  StreetName?: string;
+  /** The house number/building number/property number in the street. */
+  StreetNumber?: string;
+  /** The floor number/unit number in the building/private house number. */
+  Complement?: string;
+  /** The neighborhood. It's smaller than a region and an integral part of an address. It is used in some countries like Brazil. */
+  Neighborhood?: string;
 }
 
 /** Contains all of the delivery instructions provided by the customer for the shipping address. */
