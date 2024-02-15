@@ -240,7 +240,7 @@ export interface ChargeRefundTransaction {
   ChargeType?: string;
 }
 
-/** A list of `ChargeRefund` transactions. */
+/** A list of `ChargeRefund` transactions */
 export type ChargeRefundTransactions = ChargeRefundTransaction[];
 
 /** An event related to coupon payments. */
@@ -379,9 +379,9 @@ export interface DebtRecoveryItem {
   RecoveryAmount?: Currency;
   /** The original debt amount. */
   OriginalAmount?: Currency;
-  /** The beginning date and time of the financial event group that contains the debt. In ISO 8601 date time format. */
+  /** The beginning date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. */
   GroupBeginDate?: Date;
-  /** The ending date and time of the financial event group that contains the debt. In ISO 8601 date time format. */
+  /** The ending date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. */
   GroupEndDate?: Date;
 }
 
@@ -490,11 +490,11 @@ export interface FinancialEventGroup {
   ProcessingStatus?: string;
   /** The status of the fund transfer. */
   FundTransferStatus?: string;
-  /** The total amount in the currency of the marketplace in which the transactions occurred. */
+  /** The total amount in the currency of the marketplace in which the transactions occurred. For a closed financial group, this is the total amount of a disbursement or a charge amount. For an open financial event group, this is the current balance. */
   OriginalTotal?: Currency;
   /** The total amount in the currency of the marketplace in which the funds were disbursed. */
   ConvertedTotal?: Currency;
-  /** The date and time when the disbursement or charge was initiated. Only present for closed settlements. In ISO 8601 date time format. */
+  /** The date and time when the disbursement or charge was initiated. Only present for closed settlements. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. */
   FundTransferDate?: Date;
   /** The trace identifier used by sellers to look up transactions externally. */
   TraceId?: string;
@@ -502,9 +502,9 @@ export interface FinancialEventGroup {
   AccountTail?: string;
   /** The balance at the beginning of the settlement period. */
   BeginningBalance?: Currency;
-  /** The date and time at which the financial event group is opened. In ISO 8601 date time format. */
+  /** The date and time at which the financial event group is opened. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. */
   FinancialEventGroupStart?: Date;
-  /** The date and time at which the financial event group is closed. In ISO 8601 date time format. */
+  /** The date and time at which the financial event group is closed. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. */
   FinancialEventGroupEnd?: Date;
 }
 
@@ -684,7 +684,7 @@ export type NetworkComminglingTransactionEventList = NetworkComminglingTransacti
 export interface PayWithAmazonEvent {
   /** An order identifier that is specified by the seller. */
   SellerOrderId?: string;
-  /** The date and time when the payment transaction is posted. In ISO 8601 date time format. */
+  /** The date and time when the payment transaction is posted. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. */
   TransactionPostedDate?: Date;
   /** The type of business object. */
   BusinessObjectType?: string;
@@ -1200,7 +1200,7 @@ export interface SolutionProviderCreditEvent {
   ProviderStoreName?: string;
   /** The amount of the credit. */
   TransactionAmount?: Currency;
-  /** The date and time that the credit transaction was created, in ISO 8601 date time format. */
+  /** The date and time that the credit transaction was created, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. */
   TransactionCreationDate?: Date;
 }
 
