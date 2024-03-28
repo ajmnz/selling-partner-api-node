@@ -1,8 +1,6 @@
 name: 1. Check for model updates
 
 on:
-  schedule:
-    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 jobs:
