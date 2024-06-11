@@ -1129,15 +1129,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/aws4@npm:^1.5.1":
-  version: 1.11.2
-  resolution: "@types/aws4@npm:1.11.2"
-  dependencies:
-    "@types/node": "*"
-  checksum: dd2c33b59e91af171f211458fb128e296ff25d8be43a67c2110253d52c583f63d32c0216eb813cb74c0423a0587ce069a15576223d63860978c235669023f92c
-  languageName: node
-  linkType: hard
-
 "@types/http-cache-semantics@npm:^4.0.1":
   version: 4.0.1
   resolution: "@types/http-cache-semantics@npm:4.0.1"
@@ -1159,7 +1150,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:18.11.18":
+"@types/node@npm:18.11.18":
   version: 18.11.18
   resolution: "@types/node@npm:18.11.18"
   checksum: 03f17f9480f8d775c8a72da5ea7e9383db5f6d85aa5fefde90dd953a1449bd5e4ffde376f139da4f3744b4c83942166d2a7603969a6f8ea826edfb16e6e3b49d
@@ -1533,23 +1524,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws4-axios@npm:2.4.9":
-  version: 2.4.9
-  resolution: "aws4-axios@npm:2.4.9"
+"aws4-axios@npm:3.3.6":
+  version: 3.3.6
+  resolution: "aws4-axios@npm:3.3.6"
   dependencies:
     "@aws-sdk/client-sts": ^3.4.1
-    "@types/aws4": ^1.5.1
-    aws4: ^1.9.1
+    aws4: ^1.12.0
   peerDependencies:
-    axios: ">=0.25.0"
-  checksum: 1d4807e1df95440651b75777154f0b72bdf3c495393efe1b57a5ffcb81df4c4320742244595e2857360d6ae9c45d446cbaafac1977482da486367c40028da909
+    axios: ">=1.6.0"
+  checksum: 9f8dd331fa168a6f5acac3476bd3aa2d662f64619c36cbebe25fd9f16c1ff08d6eb7535dc4bf68bcd78ace6fe61e528128dec7ca4179fcbd97ffcd36234dd022
   languageName: node
   linkType: hard
 
-"aws4@npm:^1.9.1":
-  version: 1.12.0
-  resolution: "aws4@npm:1.12.0"
-  checksum: 68f79708ac7c335992730bf638286a3ee0a645cf12575d557860100767c500c08b30e24726b9f03265d74116417f628af78509e1333575e9f8d52a80edfe8cbc
+"aws4@npm:^1.12.0":
+  version: 1.13.0
+  resolution: "aws4@npm:1.13.0"
+  checksum: 71594a17a5f7b1a9151ef515500c18f1029caa51e2cb65c1b5b324d9bd8dac89896a9e296825d4e6befdcd612d7fc3b0d8042c667555a56df3ee1ab15d4d9b35
   languageName: node
   linkType: hard
 
@@ -5436,7 +5426,7 @@ __metadata:
     "@types/node": 18.11.18
     "@typescript-eslint/eslint-plugin": 5.50.0
     "@typescript-eslint/parser": 5.50.0
-    aws4-axios: 2.4.9
+    aws4-axios: 3.3.6
     axios: 0.27.2
     copyfiles: 2.4.1
     dotenv-cli: 7.0.0
