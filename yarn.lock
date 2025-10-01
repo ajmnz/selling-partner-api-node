@@ -1997,6 +1997,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cross-spawn@npm:^7.0.6":
+  version: 7.0.6
+  resolution: "cross-spawn@npm:7.0.6"
+  dependencies:
+    path-key: ^3.1.0
+    shebang-command: ^2.0.0
+    which: ^2.0.1
+  checksum: 8d306efacaf6f3f60e0224c287664093fa9185680b2d195852ba9a863f85d02dcc737094c6e512175f8ee0161f9b87c73c6826034c2422e39de7d6569cf4503b
+  languageName: node
+  linkType: hard
+
 "crypto-random-string@npm:^4.0.0":
   version: 4.0.0
   resolution: "crypto-random-string@npm:4.0.0"
@@ -2173,31 +2184,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv-cli@npm:7.0.0":
-  version: 7.0.0
-  resolution: "dotenv-cli@npm:7.0.0"
+"dotenv-cli@npm:10.0.0":
+  version: 10.0.0
+  resolution: "dotenv-cli@npm:10.0.0"
   dependencies:
-    cross-spawn: ^7.0.3
-    dotenv: ^16.0.0
-    dotenv-expand: ^10.0.0
+    cross-spawn: ^7.0.6
+    dotenv: ^17.1.0
+    dotenv-expand: ^11.0.0
     minimist: ^1.2.6
   bin:
     dotenv: cli.js
-  checksum: de4ed19bc08cef509e6bee8bf26df0523e502556abbc732a86f8eee50fc3b3b0b3824803100e39f2d09ef1335b558b9e10d1ba51a4a2338c0ebbae6b5c520b19
+  checksum: 8a49b24dff88731531ec13074e721073dbb38ad0953ff8b644136b2faa212261751b655b2d98c077501674585a30c81ac06a120a862149fa7658cde57f2ca4c7
   languageName: node
   linkType: hard
 
-"dotenv-expand@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "dotenv-expand@npm:10.0.0"
-  checksum: 2a38b470efe0abcb1ac8490421a55e1d764dc9440fd220942bce40965074f3fb00b585f4346020cb0f0f219966ee6b4ee5023458b3e2953fe5b3214de1b314ee
+"dotenv-expand@npm:^11.0.0":
+  version: 11.0.7
+  resolution: "dotenv-expand@npm:11.0.7"
+  dependencies:
+    dotenv: ^16.4.5
+  checksum: 58455ad9ffedbf6180b49f8f35596da54f10b02efcaabcba5400363f432e1da057113eee39b42365535da41df1e794d54a4aa67b22b37c41686c3dce4e6a28c5
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.0":
-  version: 16.0.3
-  resolution: "dotenv@npm:16.0.3"
-  checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
+"dotenv@npm:^16.4.5":
+  version: 16.6.1
+  resolution: "dotenv@npm:16.6.1"
+  checksum: e8bd63c9a37f57934f7938a9cf35de698097fadf980cb6edb61d33b3e424ceccfe4d10f37130b904a973b9038627c2646a3365a904b4406514ea94d7f1816b69
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^17.1.0":
+  version: 17.2.3
+  resolution: "dotenv@npm:17.2.3"
+  checksum: fde23eb88649041ec7a0f6a47bbe59cac3c454fc2007cf2e40b9c984aaf0636347218c56cfbbf067034b0a73f530a2698a19b4058695787eb650ec69fe234624
   languageName: node
   linkType: hard
 
@@ -5439,7 +5459,7 @@ __metadata:
     aws4-axios: 2.4.9
     axios: 0.27.2
     copyfiles: 2.4.1
-    dotenv-cli: 7.0.0
+    dotenv-cli: 10.0.0
     eslint: 8.33.0
     eslint-import-resolver-typescript: 3.5.3
     eslint-plugin-import: 2.27.5
