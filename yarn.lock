@@ -1159,10 +1159,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:18.11.18":
+"@types/node@npm:*":
   version: 18.11.18
   resolution: "@types/node@npm:18.11.18"
   checksum: 03f17f9480f8d775c8a72da5ea7e9383db5f6d85aa5fefde90dd953a1449bd5e4ffde376f139da4f3744b4c83942166d2a7603969a6f8ea826edfb16e6e3b49d
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:22.18.12":
+  version: 22.18.12
+  resolution: "@types/node@npm:22.18.12"
+  dependencies:
+    undici-types: ~6.21.0
+  checksum: f39098a09dff1df8ca4892ffcf810889b79f31f9585f7a8f27e3d047126cebc9b9fa9954b21215cc45a9793198895e81852067b019d89e03825d4f57310aa3c9
   languageName: node
   linkType: hard
 
@@ -5433,7 +5442,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sp-api-node@workspace:."
   dependencies:
-    "@types/node": 18.11.18
+    "@types/node": 22.18.12
     "@typescript-eslint/eslint-plugin": 5.50.0
     "@typescript-eslint/parser": 5.50.0
     aws4-axios: 2.4.9
@@ -5931,6 +5940,13 @@ __metadata:
     has-symbols: ^1.0.3
     which-boxed-primitive: ^1.0.2
   checksum: b7a1cf5862b5e4b5deb091672ffa579aa274f648410009c81cca63fed3b62b610c4f3b773f912ce545bb4e31edc3138975b5bc777fc6e4817dca51affb6380e9
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 46331c7d6016bf85b3e8f20c159d62f5ae471aba1eb3dc52fff35a0259d58dcc7d592d4cc4f00c5f9243fa738a11cfa48bd20203040d4a9e6bc25e807fab7ab3
   languageName: node
   linkType: hard
 
